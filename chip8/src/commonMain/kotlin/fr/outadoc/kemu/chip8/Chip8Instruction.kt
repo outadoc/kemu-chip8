@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8
 
+@Suppress("ClassName")
 sealed class Chip8Instruction {
 
     /**

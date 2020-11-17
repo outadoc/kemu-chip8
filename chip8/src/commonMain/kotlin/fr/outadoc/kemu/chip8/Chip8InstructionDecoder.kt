@@ -5,7 +5,6 @@ import fr.outadoc.kemu.chip8.Chip8Instruction.*
 import fr.outadoc.kemu.s
 import fr.outadoc.kemu.shr
 
-@ExperimentalUnsignedTypes
 class Chip8InstructionDecoder {
 
     fun parse(i: UShort): Chip8Instruction {
