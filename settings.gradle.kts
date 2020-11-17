@@ -1,3 +1,4 @@
+include(":chip8")
 pluginManagement {
     repositories {
         gradlePluginPortal()
