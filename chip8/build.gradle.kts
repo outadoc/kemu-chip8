@@ -35,6 +35,17 @@ kotlin {
                 implementation("androidx.core:core-ktx:1.3.2")
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+            }
+        }
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+            }
+        }
 
         all {
             languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
