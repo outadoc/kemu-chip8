@@ -15,9 +15,9 @@ class Chip8InstructionDecoder {
         val d = i and 0x000F.s
 
         // The same values, but shifted right
-        val a2 = (a shr 3).toUByte()
-        val b2 = (b shr 2).toUByte()
-        val c2 = (c shr 1).toUByte()
+        val a2 = (a shr 3 * 4).toUByte()
+        val b2 = (b shr 2 * 4).toUByte()
+        val c2 = (c shr 1 * 4).toUByte()
         val d2 = d.toUByte()
 
         return when {
