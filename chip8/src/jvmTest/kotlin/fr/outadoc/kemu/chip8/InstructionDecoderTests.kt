@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8
 
+import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory

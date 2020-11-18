@@ -1,7 +1,7 @@
 package fr.outadoc.kemu.chip8
 
 import fr.outadoc.kemu.b
-import fr.outadoc.kemu.chip8.Chip8Instruction.*
+import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction.*
 import fr.outadoc.kemu.s
 
 val instructionDecoderTestSuite = listOf(

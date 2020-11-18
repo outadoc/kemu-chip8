@@ -5,4 +5,3 @@ const val RAM_SECTION_STACK = 0x000
 const val RAM_SECTION_PROGRAM = 0x200
 
 val REGISTER_COUNT = 16.toUInt()
-

@@ -27,3 +27,7 @@ interface RAM : Memory {
 interface ROM : Memory {
 
 }
+
+interface ControlUnit {
+
+}

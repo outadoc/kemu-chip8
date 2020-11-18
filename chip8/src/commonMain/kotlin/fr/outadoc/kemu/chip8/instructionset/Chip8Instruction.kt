@@ -1,4 +1,6 @@
-package fr.outadoc.kemu.chip8
+package fr.outadoc.kemu.chip8.instructionset
+
+import fr.outadoc.kemu.chip8.processor.isValidVRegister
 
 @Suppress("ClassName")
 sealed class Chip8Instruction {
