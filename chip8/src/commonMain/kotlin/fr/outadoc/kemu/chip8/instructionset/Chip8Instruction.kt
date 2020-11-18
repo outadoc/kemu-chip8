@@ -6,7 +6,7 @@ import fr.outadoc.kemu.chip8.processor.isValidVRegister
 sealed class Chip8Instruction {
 
     /**
-     * Execute machine language subroutine at address nnn
+     * Execute machine language subroutine at address nnn.
      */
     data class sys(val nnn: UShort) : Chip8Instruction()
 

@@ -3,6 +3,7 @@ package fr.outadoc.kemu.chip8.controlunit
 import fr.outadoc.kemu.chip8.Chip8CPU
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.devices.ControlUnit
+import fr.outadoc.kemu.logging.Logger
 
 class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
 
@@ -15,6 +16,9 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
             }
 
             is Chip8Instruction.sys -> {
+                // This instruction is only used on the old computers on which Chip-8 was
+                // originally implemented. It is ignored by modern interpreters.
+                Logger.w { "instruction was ignored: $instruction" }
             }
 
             is Chip8Instruction.jmp -> {
