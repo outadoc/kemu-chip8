@@ -8,13 +8,13 @@ import fr.outadoc.kemu.shr
 class Chip8InstructionDecoder {
 
     fun parse(i: UShort): Chip8Instruction {
-        // Split the instruction into 4 * 4 bits
+        // Split the instruction into 4 nibbles
         val a = i and 0xF000.s
         val b = i and 0x0F00.s
         val c = i and 0x00F0.s
         val d = i and 0x000F.s
 
-        // The same values, but shifted right
+        // The same values, but shifted right n nibbles
         val a2 = (a shr 3 * 4).toUByte()
         val b2 = (b shr 2 * 4).toUByte()
         val c2 = (c shr 1 * 4).toUByte()
