@@ -1,17 +1,18 @@
 package fr.outadoc.kemu.chip8
 
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import java.util.stream.Stream
+import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
 
 actual class InstructionDecoderTests {
 
     lateinit var decoder: Chip8InstructionDecoder
 
-    @BeforeEach
+    @BeforeTest
     fun setup() {
         decoder = Chip8InstructionDecoder()
     }
@@ -22,6 +23,17 @@ actual class InstructionDecoderTests {
             dynamicTest("Decode $input correctly") {
                 val actual = decoder.parse(input.toUShort())
                 assertEquals(expected, actual)
+            }
+        }.stream()
+    }
+
+    @TestFactory
+    fun testIllegalInstructions(): Stream<DynamicTest> {
+        return instructionDecoderIllegalTestSuite.map { input ->
+            dynamicTest("Decode $input correctly") {
+                assertFails {
+                    decoder.parse(input.toUShort())
+                }
             }
         }.stream()
     }
