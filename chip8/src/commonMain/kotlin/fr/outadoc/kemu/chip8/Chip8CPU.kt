@@ -2,6 +2,8 @@ package fr.outadoc.kemu.chip8
 
 import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
 import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
+import fr.outadoc.kemu.chip8.memory.Chip8Bus
+import fr.outadoc.kemu.chip8.memory.Chip8RAM
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.devices.CPU
 import fr.outadoc.kemu.devices.DefaultRandomGenerator
@@ -15,7 +17,8 @@ class Chip8CPU : CPU {
 
     val controlUnit = Chip8ControlUnit(this)
     val decoder = Chip8InstructionDecoder()
-    val randomGenerator = DefaultRandomGenerator()
+    val random = DefaultRandomGenerator()
+    val memoryBus = Chip8Bus(listOf(Chip8RAM()))
 
     fun updateRegisters(advance: Int = 1, block: (Chip8Registers.() -> Chip8Registers)? = null) {
         val updatedRegisters = (if (block != null) registers.block() else registers)

@@ -164,7 +164,7 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().apply {
                         // Vx = random and nn
-                        v[ins.x] = cpu.randomGenerator.nextByte() and ins.nn
+                        v[ins.x] = cpu.random.nextByte() and ins.nn
                     })
                 }
             }

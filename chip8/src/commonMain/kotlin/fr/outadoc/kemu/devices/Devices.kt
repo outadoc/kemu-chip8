@@ -8,23 +8,17 @@ interface Timer {
 
 }
 
-interface Bus {
+interface Bus<Width> {
+    fun read(addr: Width): UByte
+    fun write(addr: Width, value: UByte)
+}
 
+interface BusDevice<Width> {
+    fun read(addr: Width): UByte
+    fun write(addr: Width, value: UByte)
 }
 
 interface Clock {
-
-}
-
-interface Memory {
-
-}
-
-interface RAM : Memory {
-
-}
-
-interface ROM : Memory {
 
 }
 
