@@ -1,6 +1,7 @@
 package fr.outadoc.kemu.chip8.processor
 
 import fr.outadoc.kemu.b
+import fr.outadoc.kemu.chip8.INITIAL_SP
 import fr.outadoc.kemu.s
 
 val V_REGISTER_COUNT = 16.toUInt()
@@ -25,7 +26,7 @@ data class Chip8Registers(
     /**
      * Stack pointer, points to the topmost level of the stack.
      */
-    val sp: UByte = 0x00.b,
+    val sp: UByte = INITIAL_SP,
 
     /**
      * Delay timer register. Delay timer is enabled when value is non-zero.
