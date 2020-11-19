@@ -10,6 +10,7 @@ import fr.outadoc.kemu.devices.RandomGenerator
 import fr.outadoc.kemu.get
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.set
+import kotlin.math.pow
 
 class Chip8ControlUnit(
     private val registers: RegisterAccessor<Chip8Registers>,
@@ -226,7 +227,17 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.bcd -> {
-                todo(ins)
+                fun UByte.nthBcdDigit(n: UByte): UByte {
+                    // I don't see what you mean. Working with numerical types in Kotlin is fiiiine.
+                    return ((this / (10f.pow((n - 1.toUInt()).toInt())).toUInt()).rem(10.toUInt())).toUByte()
+                }
+
+                val vx = registers.read.v[ins.x]
+                for (n in (0 until 3).map { it.toUByte() }) {
+                    memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit(n))
+                }
+
+                registers.updateRegisters(advance = 1)
             }
 
             is Chip8Instruction.str -> {
