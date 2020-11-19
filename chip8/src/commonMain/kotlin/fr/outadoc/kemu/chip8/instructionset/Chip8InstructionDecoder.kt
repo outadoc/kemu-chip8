@@ -57,7 +57,7 @@ class Chip8InstructionDecoder {
             a2 == 0xF.b && c2 == 0x5.b && d2 == 0x5.b -> str(x = b2)
             a2 == 0xF.b && c2 == 0x6.b && d2 == 0x5.b -> ldr(x = b2)
 
-            else -> throw IllegalStateException("instruction ${i.toString(16)} is unsupported")
+            else -> throw IllegalStateException("instruction 0x${i.toString(16)} is unsupported")
         }
     }
 }

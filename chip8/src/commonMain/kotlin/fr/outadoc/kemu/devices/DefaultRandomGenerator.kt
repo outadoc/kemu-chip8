@@ -1,0 +1,18 @@
+package fr.outadoc.kemu.devices
+
+import kotlin.random.Random
+
+class DefaultRandomGenerator : RandomGenerator {
+
+    override var seed: Int = 0
+        set(value) {
+            field = value
+            random = Random(seed)
+        }
+
+    private var random = Random(seed)
+
+    override fun nextByte(): UByte {
+        return random.nextBits(8).toUByte()
+    }
+}
