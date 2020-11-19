@@ -218,6 +218,7 @@ class Chip8ControlUnit(
 
             is Chip8Instruction.adi -> {
                 registers.updateRegisters {
+                    // I = I + Vx
                     copy(i = (i + v[ins.x]).toUShort())
                 }
             }
@@ -232,6 +233,7 @@ class Chip8ControlUnit(
                     return ((this / (10f.pow((n - 1.toUInt()).toInt())).toUInt()).rem(10.toUInt())).toUByte()
                 }
 
+                // Copy three base-10 digits of Vx to memory at I .. I + 2
                 val vx = registers.read.v[ins.x]
                 for (n in (0 until 3).map { it.toUByte() }) {
                     memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit(n))
@@ -241,20 +243,30 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.str -> {
+                // Copy registers V0 .. Vx to memory at I .. I + x
                 for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
                     memoryBus.write((registers.read.i + iv).toUShort(), registers.read.v[iv])
                 }
 
-                registers.updateRegisters(advance = 1)
+                registers.updateRegisters(advance = 1) {
+                    // I = I + x + 1
+                    copy(i = (i + ins.x + i).toUShort())
+                }
             }
 
             is Chip8Instruction.ldr -> {
+                // Copy memory at I .. I + x to registers V0 .. Vx
                 registers.updateRegisters {
                     val v = v.copyOf()
                     for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
                         v[iv] = memoryBus.read((registers.read.i + iv).toUShort())
                     }
-                    copy(v = v)
+
+                    // Additionally, I = I + x + 1
+                    copy(
+                        v = v,
+                        i = (i + ins.x + i).toUShort()
+                    )
                 }
             }
         }

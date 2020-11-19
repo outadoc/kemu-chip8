@@ -2,6 +2,10 @@ package fr.outadoc.kemu.chip8.instructionset
 
 import fr.outadoc.kemu.chip8.processor.isValidVRegister
 
+/**
+ * @see [CHIP‐8 Instruction Set](https://github.com/mattmikolay/chip-8/wiki/CHIP%E2%80%908-Instruction-Set)
+ * @see [CHIP‐8 Instruction Set](http://devernay.free.fr/hacks/chip8/chip8def.htm)
+ */
 @Suppress("ClassName")
 sealed class Chip8Instruction {
 
@@ -298,7 +302,10 @@ sealed class Chip8Instruction {
 
     /**
      * Store the values of registers V0 to Vx inclusive in memory starting at address I
-     * I is set to I + x + 1 after operation²
+     * I is set to I + x + 1 after operation
+     *
+     * NB: Erik Bryntse’s S-CHIP documentation incorrectly implies this instruction does not modify
+     * the I register. Certain S-CHIP-compatible emulators may implement this instruction in this manner.
      */
     data class str(val x: UByte) : Chip8Instruction() {
         init {
@@ -308,7 +315,10 @@ sealed class Chip8Instruction {
 
     /**
      * Fill registers V0 to Vx inclusive with the values stored in memory starting at address I
-     * I is set to I + x + 1 after operation²
+     * I is set to I + x + 1 after operation
+     *
+     * NB: Erik Bryntse’s S-CHIP documentation incorrectly implies this instruction does not modify
+     * the I register. Certain S-CHIP-compatible emulators may implement this instruction in this manner.
      */
     data class ldr(val x: UByte) : Chip8Instruction() {
         init {
