@@ -3,6 +3,7 @@ package fr.outadoc.kemu.chip8.controlunit
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8CPU
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
+import fr.outadoc.kemu.chip8.processor.V_REGISTER_COUNT
 import fr.outadoc.kemu.devices.ControlUnit
 import fr.outadoc.kemu.get
 import fr.outadoc.kemu.logging.Logger
@@ -223,11 +224,21 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
             }
 
             is Chip8Instruction.str -> {
-                todo(ins)
+                for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
+                    cpu.memoryBus.write((cpu.registers.i + iv).toUShort(), cpu.registers.v[iv])
+                }
+
+                cpu.updateRegisters(advance = 1)
             }
 
             is Chip8Instruction.ldr -> {
-                todo(ins)
+                cpu.updateRegisters {
+                    val v = v.copyOf()
+                    for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
+                        v[iv] = cpu.memoryBus.read((cpu.registers.i + iv).toUShort())
+                    }
+                    copy(v = v)
+                }
             }
         }
     }

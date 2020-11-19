@@ -1,15 +1,16 @@
 package fr.outadoc.kemu.chip8.processor
 
 import fr.outadoc.kemu.b
-import fr.outadoc.kemu.chip8.REGISTER_COUNT
 import fr.outadoc.kemu.s
+
+val V_REGISTER_COUNT = 16.toUInt()
 
 data class Chip8Registers(
 
     /**
      * General-purpose registers. v[0xf] should not be used by any programs.
      */
-    val v: UByteArray = UByteArray(REGISTER_COUNT.toInt()),
+    val v: UByteArray = UByteArray(V_REGISTER_COUNT.toInt()),
 
     /**
      * This register is generally used to store memory addresses, so only the lowest (rightmost) 12 bits are usually used.
