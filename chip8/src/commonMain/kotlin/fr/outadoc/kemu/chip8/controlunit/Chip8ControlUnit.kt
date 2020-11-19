@@ -10,49 +10,49 @@ import fr.outadoc.kemu.set
 
 class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
 
-    fun run(i: Chip8Instruction) {
-        when (i) {
+    fun run(ins: Chip8Instruction) {
+        when (ins) {
             Chip8Instruction.cls -> {
-                todo(i)
+                todo(ins)
             }
 
             Chip8Instruction.rts -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.sys -> {
                 // This instruction is only used on the old computers on which Chip-8 was
                 // originally implemented. It is ignored by modern interpreters.
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.jmp -> {
                 cpu.updateRegisters(advance = 0) {
-                    copy(pc = i.nnn)
+                    copy(pc = ins.nnn)
                 }
             }
 
             is Chip8Instruction.jsr -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.skeq -> {
-                cpu.updateRegisters(advance = if (cpu.registers.v[i.x] == i.nn) 2 else 1)
+                cpu.updateRegisters(advance = if (cpu.registers.v[ins.x] == ins.nn) 2 else 1)
             }
 
             is Chip8Instruction.skne -> {
-                cpu.updateRegisters(advance = if (cpu.registers.v[i.x] != i.nn) 2 else 1)
+                cpu.updateRegisters(advance = if (cpu.registers.v[ins.x] != ins.nn) 2 else 1)
             }
 
             is Chip8Instruction.skeq2 -> {
-                cpu.updateRegisters(advance = if (cpu.registers.v[i.x] == cpu.registers.v[i.y]) 2 else 1)
+                cpu.updateRegisters(advance = if (cpu.registers.v[ins.x] == cpu.registers.v[ins.y]) 2 else 1)
             }
 
             is Chip8Instruction.mov -> {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = nn
-                        v[i.x] = i.nn
+                        v[ins.x] = ins.nn
                     })
                 }
             }
@@ -61,7 +61,7 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx + nn
-                        v[i.x] = (v[i.x] + i.nn).toUByte()
+                        v[ins.x] = (v[ins.x] + ins.nn).toUByte()
                     })
                 }
             }
@@ -70,7 +70,7 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vy
-                        v[i.x] = v[i.y]
+                        v[ins.x] = v[ins.y]
                     })
                 }
             }
@@ -79,7 +79,7 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx or Vy
-                        v[i.x] = v[i.x] or v[i.y]
+                        v[ins.x] = v[ins.x] or v[ins.y]
                     })
                 }
             }
@@ -88,7 +88,7 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx and Vy
-                        v[i.x] = v[i.x] and v[i.y]
+                        v[ins.x] = v[ins.x] and v[ins.y]
                     })
                 }
             }
@@ -97,7 +97,7 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx xor Vy
-                        v[i.x] = v[i.x] xor v[i.y]
+                        v[ins.x] = v[ins.x] xor v[ins.y]
                     })
                 }
             }
@@ -105,9 +105,9 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
             is Chip8Instruction.add2 -> {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
-                        val res: UInt = v[i.x] + v[i.y]
+                        val res: UInt = v[ins.x] + v[ins.y]
                         // Vx = Vx + Vy
-                        v[i.x] = res.toUByte()
+                        v[ins.x] = res.toUByte()
                         // Vf is the carry bit
                         v[0xf] = if (res > 0xff.toUByte()) 0x1.b else 0x0.b
                     })
@@ -118,45 +118,45 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx - Vy
-                        v[i.x] = (v[i.x] - v[i.y]).toUByte()
+                        v[ins.x] = (v[ins.x] - v[ins.y]).toUByte()
                         // Vf is the NOT borrow bit
-                        v[0xf] = if (v[i.x] > v[i.y]) 0x1.b else 0x0.b
+                        v[0xf] = if (v[ins.x] > v[ins.y]) 0x1.b else 0x0.b
                     })
                 }
             }
 
             is Chip8Instruction.shr -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.rsb -> {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vy - Vx
-                        v[i.x] = (v[i.y] - v[i.x]).toUByte()
+                        v[ins.x] = (v[ins.y] - v[ins.x]).toUByte()
                         // Vf is the NOT borrow bit
-                        v[0xf] = if (v[i.y] > v[i.x]) 0x1.b else 0x0.b
+                        v[0xf] = if (v[ins.y] > v[ins.x]) 0x1.b else 0x0.b
                     })
                 }
             }
 
             is Chip8Instruction.shl -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.skne2 -> {
-                cpu.updateRegisters(advance = if (cpu.registers.v[i.x] != cpu.registers.v[i.y]) 2 else 1)
+                cpu.updateRegisters(advance = if (cpu.registers.v[ins.x] != cpu.registers.v[ins.y]) 2 else 1)
             }
 
             is Chip8Instruction.mvi -> {
                 cpu.updateRegisters {
-                    copy(i = i.nnn)
+                    copy(i = ins.nnn)
                 }
             }
 
             is Chip8Instruction.jmi -> {
                 cpu.updateRegisters {
-                    copy(pc = (i.nnn + v[0x0]).toUShort())
+                    copy(pc = (ins.nnn + v[0x0]).toUShort())
                 }
             }
 
@@ -164,57 +164,70 @@ class Chip8ControlUnit(private val cpu: Chip8CPU) : ControlUnit {
                 cpu.updateRegisters {
                     copy(v = v.copyOf().apply {
                         // Vx = random and nn
-                        v[i.x] = cpu.randomGenerator.nextByte() and i.nn
+                        v[ins.x] = cpu.randomGenerator.nextByte() and ins.nn
                     })
                 }
             }
 
             is Chip8Instruction.sprite -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.skpr -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.skup -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.gdelay -> {
-                todo(i)
+                cpu.updateRegisters {
+                    copy(v = v.copyOf().also { v ->
+                        // Vx = DT
+                        v[ins.x] = dt
+                    })
+                }
             }
 
             is Chip8Instruction.key -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.sdelay -> {
-                todo(i)
+                cpu.updateRegisters {
+                    // DT = Vx
+                    copy(dt = v[ins.x])
+                }
             }
 
             is Chip8Instruction.ssound -> {
-                todo(i)
+                cpu.updateRegisters {
+                    // DT = Vx
+                    copy(st = v[ins.x])
+                }
             }
 
             is Chip8Instruction.adi -> {
-                todo(i)
+                cpu.updateRegisters {
+                    copy(i = (i + v[ins.x]).toUShort())
+                }
             }
 
             is Chip8Instruction.font -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.bcd -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.str -> {
-                todo(i)
+                todo(ins)
             }
 
             is Chip8Instruction.ldr -> {
-                todo(i)
+                todo(ins)
             }
         }
     }
