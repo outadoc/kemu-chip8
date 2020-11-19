@@ -1,15 +1,14 @@
 package fr.outadoc.kemu.chip8.controlunit
 
-import fr.outadoc.kemu.b
+import fr.outadoc.kemu.*
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.chip8.processor.RegisterAccessor
 import fr.outadoc.kemu.devices.Bus
 import fr.outadoc.kemu.devices.ControlUnit
 import fr.outadoc.kemu.devices.RandomGenerator
-import fr.outadoc.kemu.get
 import fr.outadoc.kemu.logging.Logger
-import fr.outadoc.kemu.set
+import fr.outadoc.kemu.shr
 import kotlin.math.pow
 
 class Chip8ControlUnit(
@@ -134,7 +133,13 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.shr -> {
-                todo(ins)
+                registers.updateRegisters {
+                    copy(v = v.copyOf().also { v ->
+                        // Set Vf to 1 if the LSB of Vx is 1
+                        v[0xf] = if (v[ins.x] and 0x01.b == 0x01.b) 0x1.b else 0x0.b
+                        v[ins.x] = v[ins.x] shr 1
+                    })
+                }
             }
 
             is Chip8Instruction.rsb -> {
@@ -149,7 +154,13 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.shl -> {
-                todo(ins)
+                registers.updateRegisters {
+                    copy(v = v.copyOf().also { v ->
+                        // Set Vf to 1 if the MSB of Vx is 1
+                        v[0xf] = if (v[ins.x] and 0x80.b == 0x80.b) 0x1.b else 0x0.b
+                        v[ins.x] = v[ins.x] shl 1
+                    })
+                }
             }
 
             is Chip8Instruction.skne2 -> {
