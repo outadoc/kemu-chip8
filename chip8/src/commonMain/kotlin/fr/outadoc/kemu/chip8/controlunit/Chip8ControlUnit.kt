@@ -39,29 +39,29 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.jmp -> {
-                registers.updateRegisters(advance = 0) {
+                registers.update(advance = 0) {
                     copy(pc = ins.nnn)
                 }
             }
 
             is Chip8Instruction.jsr -> {
-                todo(ins)
+
             }
 
             is Chip8Instruction.skeq -> {
-                registers.updateRegisters(advance = if (registers.read.v[ins.x] == ins.nn) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] == ins.nn) 2 else 1)
             }
 
             is Chip8Instruction.skne -> {
-                registers.updateRegisters(advance = if (registers.read.v[ins.x] != ins.nn) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] != ins.nn) 2 else 1)
             }
 
             is Chip8Instruction.skeq2 -> {
-                registers.updateRegisters(advance = if (registers.read.v[ins.x] == registers.read.v[ins.y]) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] == registers.read.v[ins.y]) 2 else 1)
             }
 
             is Chip8Instruction.mov -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = nn
                         v[ins.x] = ins.nn
@@ -70,7 +70,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.add -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx + nn
                         v[ins.x] = (v[ins.x] + ins.nn).toUByte()
@@ -79,7 +79,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.mov2 -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vy
                         v[ins.x] = v[ins.y]
@@ -88,7 +88,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.or -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx or Vy
                         v[ins.x] = v[ins.x] or v[ins.y]
@@ -97,7 +97,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.and -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx and Vy
                         v[ins.x] = v[ins.x] and v[ins.y]
@@ -106,7 +106,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.xor -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx xor Vy
                         v[ins.x] = v[ins.x] xor v[ins.y]
@@ -115,7 +115,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.add2 -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         val res: UInt = v[ins.x] + v[ins.y]
                         // Vx = Vx + Vy
@@ -127,7 +127,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.sub -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx - Vy
                         v[ins.x] = (v[ins.x] - v[ins.y]).toUByte()
@@ -138,7 +138,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.shr -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Set Vf to 1 if the LSB of Vx is 1
                         v[0xf] = if (v[ins.x] and 0x01.b == 0x01.b) 0x1.b else 0x0.b
@@ -148,7 +148,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.rsb -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vy - Vx
                         v[ins.x] = (v[ins.y] - v[ins.x]).toUByte()
@@ -159,7 +159,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.shl -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Set Vf to 1 if the MSB of Vx is 1
                         v[0xf] = if (v[ins.x] and 0x80.b == 0x80.b) 0x1.b else 0x0.b
@@ -169,23 +169,23 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.skne2 -> {
-                registers.updateRegisters(advance = if (registers.read.v[ins.x] != registers.read.v[ins.y]) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] != registers.read.v[ins.y]) 2 else 1)
             }
 
             is Chip8Instruction.mvi -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(i = ins.nnn)
                 }
             }
 
             is Chip8Instruction.jmi -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(pc = (ins.nnn + v[0x0]).toUShort())
                 }
             }
 
             is Chip8Instruction.rand -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().apply {
                         // Vx = random and nn
                         v[ins.x] = random.nextByte() and ins.nn
@@ -206,7 +206,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.gdelay -> {
-                registers.updateRegisters {
+                registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = DT
                         v[ins.x] = dt
@@ -219,21 +219,21 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.sdelay -> {
-                registers.updateRegisters {
+                registers.update {
                     // DT = Vx
                     copy(dt = v[ins.x])
                 }
             }
 
             is Chip8Instruction.ssound -> {
-                registers.updateRegisters {
+                registers.update {
                     // DT = Vx
                     copy(st = v[ins.x])
                 }
             }
 
             is Chip8Instruction.adi -> {
-                registers.updateRegisters {
+                registers.update {
                     // I = I + Vx
                     copy(i = (i + v[ins.x]).toUShort())
                 }
@@ -255,7 +255,7 @@ class Chip8ControlUnit(
                     memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit(n))
                 }
 
-                registers.updateRegisters(advance = 1)
+                registers.update(advance = 1)
             }
 
             is Chip8Instruction.str -> {
@@ -264,7 +264,7 @@ class Chip8ControlUnit(
                     memoryBus.write((registers.read.i + iv).toUShort(), registers.read.v[iv])
                 }
 
-                registers.updateRegisters(advance = 1) {
+                registers.update(advance = 1) {
                     // I = I + x + 1
                     copy(i = (i + ins.x + i).toUShort())
                 }
@@ -272,7 +272,7 @@ class Chip8ControlUnit(
 
             is Chip8Instruction.ldr -> {
                 // Copy memory at I .. I + x to registers V0 .. Vx
-                registers.updateRegisters {
+                registers.update {
                     val v = v.copyOf()
                     for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
                         v[iv] = memoryBus.read((registers.read.i + iv).toUShort())
@@ -290,6 +290,6 @@ class Chip8ControlUnit(
 
     private fun todo(instruction: Chip8Instruction) {
         Logger.w { "instruction was ignored: $instruction" }
-        registers.updateRegisters(advance = 1)
+        registers.update(advance = 1)
     }
 }

@@ -22,7 +22,7 @@ class Chip8CPU : CPU, RegisterAccessor<Chip8Registers> {
 
     val controlUnit = Chip8ControlUnit(this, random, memoryBus)
 
-    override fun updateRegisters(advance: Int, block: (Chip8Registers.() -> Chip8Registers)?) {
+    override fun update(advance: Int, block: (Chip8Registers.() -> Chip8Registers)?) {
         val updatedRegisters = (if (block != null) read.block() else read)
         _registers = updatedRegisters.let { r ->
             if (advance > 0) {
