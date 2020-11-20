@@ -1,6 +1,8 @@
 package fr.outadoc.kemu.chip8
 
 import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
+import fr.outadoc.kemu.chip8.display.Chip8Display
+import fr.outadoc.kemu.chip8.display.Chip8Keypad
 import fr.outadoc.kemu.chip8.memory.Chip8Sprites
 import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
 import fr.outadoc.kemu.chip8.memory.Chip8Bus
@@ -8,30 +10,40 @@ import fr.outadoc.kemu.chip8.memory.Chip8RAM
 import fr.outadoc.kemu.chip8.processor.Chip8RegisterHolder
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
 import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
+import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.devices.CPU
+import fr.outadoc.kemu.display.Display
+import fr.outadoc.kemu.display.Keypad
 import fr.outadoc.kemu.get
+import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.random.DefaultRandomGenerator
+import fr.outadoc.kemu.random.RandomGenerator
+import fr.outadoc.kemu.timer.Timer
 
 class Chip8CPU : CPU {
 
-    val registerHolder = Chip8RegisterHolder()
+    private val registerHolder = Chip8RegisterHolder()
 
-    val decoder = Chip8InstructionDecoder()
-    val random = DefaultRandomGenerator()
+    private val random: RandomGenerator = DefaultRandomGenerator()
 
-    val memoryBus = Chip8Bus(
+    private val memoryBus: Bus<UShort> = Chip8Bus(
         listOf(
             Chip8RAM(),
             Chip8Sprites()
         )
     )
 
-    val timers = listOf(
+    private val timers = listOf<Timer>(
         Chip8DelayTimer(registerHolder),
         Chip8SoundTimer(registerHolder)
     )
 
-    val controlUnit = Chip8ControlUnit(registerHolder, random, memoryBus)
+    private val display: Display = Chip8Display()
+    private val keypad: Keypad = Chip8Keypad()
+
+    private val decoder = Chip8InstructionDecoder()
+    private val controlUnit: ControlUnit =
+        Chip8ControlUnit(registerHolder, random, memoryBus, display, keypad)
 
     override fun start() {
         timers.forEach { timer -> timer.start() }

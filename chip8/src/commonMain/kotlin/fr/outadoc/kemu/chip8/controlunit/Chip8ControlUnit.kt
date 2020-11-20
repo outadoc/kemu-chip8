@@ -9,6 +9,8 @@ import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.registers.RegisterAccessor
 import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.controlunit.ControlUnit
+import fr.outadoc.kemu.display.Display
+import fr.outadoc.kemu.display.Keypad
 import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.shr
@@ -17,7 +19,9 @@ import kotlin.math.pow
 class Chip8ControlUnit(
     private val registers: RegisterAccessor<Chip8Registers>,
     private val random: RandomGenerator,
-    private val memoryBus: Bus<UShort>
+    private val memoryBus: Bus<UShort>,
+    private val display: Display,
+    private val keypad: Keypad
 ) : ControlUnit {
 
     fun run(ins: Chip8Instruction) {
@@ -28,7 +32,8 @@ class Chip8ControlUnit(
 
         when (ins) {
             Chip8Instruction.cls -> {
-                todo(ins)
+                display.clear()
+                registers.update(advance = 1)
             }
 
             Chip8Instruction.rts -> {
@@ -236,11 +241,11 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.skpr -> {
-                todo(ins)
+                registers.update(advance = if (keypad.isKeyPressed(registers.read.v[ins.x])) 2 else 1)
             }
 
             is Chip8Instruction.skup -> {
-                todo(ins)
+                registers.update(advance = if (!keypad.isKeyPressed(registers.read.v[ins.x])) 2 else 1)
             }
 
             is Chip8Instruction.gdelay -> {
@@ -253,7 +258,11 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.key -> {
-                todo(ins)
+                registers.update {
+                    copy(v = v.copyOf().also { v ->
+                        v[ins.x] = keypad.waitForKeyPress()
+                    })
+                }
             }
 
             is Chip8Instruction.sdelay -> {
@@ -304,7 +313,7 @@ class Chip8ControlUnit(
                     memoryBus.write((registers.read.i + iv).toUShort(), registers.read.v[iv])
                 }
 
-                registers.update(advance = 1) {
+                registers.update {
                     // I = I + x + 1
                     copy(i = (i + ins.x + i).toUShort())
                 }
