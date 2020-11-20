@@ -8,4 +8,6 @@ object Chip8Constants {
 
     val INITIAL_SP = 0x00.b
     val MAX_SP = 0xF.b
+
+    const val TIMER_FREQ_HZ = 1f / 60f
 }

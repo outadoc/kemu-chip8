@@ -7,6 +7,7 @@ import fr.outadoc.kemu.chip8.memory.Chip8RAM
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.chip8.processor.RegisterAccessor
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
+import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
 import fr.outadoc.kemu.devices.CPU
 import fr.outadoc.kemu.devices.DefaultRandomGenerator
 import fr.outadoc.kemu.s
@@ -25,9 +26,23 @@ class Chip8CPU : CPU, RegisterAccessor<Chip8Registers> {
 
     val decoder = Chip8InstructionDecoder()
     val random = DefaultRandomGenerator()
-    val memoryBus = Chip8Bus(listOf(Chip8RAM()))
-    val timers = listOf(Chip8DelayTimer(this))
+
+    val memoryBus = Chip8Bus(
+        listOf(
+            Chip8RAM()
+        )
+    )
+
+    val timers = listOf(
+        Chip8DelayTimer(this),
+        Chip8SoundTimer(this)
+    )
+
     val controlUnit = Chip8ControlUnit(this, random, memoryBus)
+
+    fun start() {
+        timers.forEach { it.start() }
+    }
 
     override fun update(advance: Int, block: (Chip8Registers.() -> Chip8Registers)?) {
         val updatedRegisters = (if (block != null) read.block() else read)
