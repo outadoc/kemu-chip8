@@ -8,10 +8,10 @@ import fr.outadoc.kemu.chip8.processor.Chip8RegisterHolder
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
 import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
 import fr.outadoc.kemu.devices.CPU
+import fr.outadoc.kemu.get
 import fr.outadoc.kemu.random.DefaultRandomGenerator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 class Chip8CPU : CPU {
 
     val registerHolder = Chip8RegisterHolder()
@@ -37,6 +37,15 @@ class Chip8CPU : CPU {
     }
 
     override fun loop() {
+    }
 
+    override fun loadProgram(program: UByteArray) {
+        val start = Chip8Constants.RAM_SECTION_PROGRAM
+        val end = start + program.size
+
+        // Copy program into memory
+        for (addr in (start..end).map { it.toUShort() }) {
+            memoryBus.write(addr, program[addr])
+        }
     }
 }
