@@ -278,7 +278,9 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.font -> {
-                todo(ins)
+                registers.update {
+                    copy(i = (Chip8Constants.RAM_SECTION_SPRITES + v[ins.x]).toUShort())
+                }
             }
 
             is Chip8Instruction.bcd -> {
