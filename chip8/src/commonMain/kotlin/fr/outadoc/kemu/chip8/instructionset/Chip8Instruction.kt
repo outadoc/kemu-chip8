@@ -1,13 +1,14 @@
 package fr.outadoc.kemu.chip8.instructionset
 
 import fr.outadoc.kemu.chip8.processor.isValidVRegister
+import fr.outadoc.kemu.instructionset.Instruction
 
 /**
  * @see [CHIP‐8 Instruction Set](https://github.com/mattmikolay/chip-8/wiki/CHIP%E2%80%908-Instruction-Set)
  * @see [CHIP‐8 Instruction Set](http://devernay.free.fr/hacks/chip8/chip8def.htm)
  */
 @Suppress("ClassName")
-sealed class Chip8Instruction {
+sealed class Chip8Instruction : Instruction {
 
     /**
      * Execute machine language subroutine at address nnn.

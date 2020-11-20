@@ -1,12 +1,11 @@
 package fr.outadoc.kemu.chip8
 
 import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
-import fr.outadoc.kemu.chip8.display.Chip8Display
-import fr.outadoc.kemu.chip8.display.Chip8Keypad
-import fr.outadoc.kemu.chip8.memory.Chip8Sprites
+import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
 import fr.outadoc.kemu.chip8.memory.Chip8Bus
 import fr.outadoc.kemu.chip8.memory.Chip8RAM
+import fr.outadoc.kemu.chip8.memory.Chip8Sprites
 import fr.outadoc.kemu.chip8.processor.Chip8RegisterHolder
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
 import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
@@ -18,6 +17,8 @@ import fr.outadoc.kemu.get
 import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.random.DefaultRandomGenerator
 import fr.outadoc.kemu.random.RandomGenerator
+import fr.outadoc.kemu.s
+import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.timer.Timer
 
 class Chip8CPU(display: Display, keypad: Keypad) : CPU {
@@ -39,7 +40,7 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
     )
 
     private val decoder = Chip8InstructionDecoder()
-    private val controlUnit: ControlUnit =
+    private val controlUnit: ControlUnit<Chip8Instruction> =
         Chip8ControlUnit(registerHolder, random, memoryBus, display, keypad)
 
     override fun start() {
@@ -47,6 +48,13 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
     }
 
     override fun loop() {
+        val pc = registerHolder.read.pc
+
+        val msb = memoryBus.read(pc)
+        val lsb = memoryBus.read((pc + 1.s).toUShort())
+        val ins = decoder.parse(((msb shl 8) or lsb).toUShort())
+
+        controlUnit.exec(ins)
     }
 
     override fun loadProgram(program: UByteArray) {

@@ -23,9 +23,9 @@ class Chip8ControlUnit(
     private val memoryBus: Bus<UShort>,
     private val display: Display,
     private val keypad: Keypad
-) : ControlUnit {
+) : ControlUnit<Chip8Instruction> {
 
-    fun run(ins: Chip8Instruction) {
+    fun exec(ins: Chip8Instruction) {
         Logger.d { "executing $ins" }
 
         // Show register state
@@ -34,7 +34,7 @@ class Chip8ControlUnit(
         when (ins) {
             Chip8Instruction.cls -> {
                 display.clear()
-                registers.update(advance = 1)
+                registers.update(advance = 2)
             }
 
             Chip8Instruction.rts -> {
@@ -45,13 +45,13 @@ class Chip8ControlUnit(
                     }
 
                     // Read LSB of PC from stack
-                    val lsb = memoryBus.read((sp * 0x2.b + 0x1.b).toUShort())
+                    val lsb = memoryBus.read((sp + 0x1.b).toUShort())
 
                     // Read LSB of PC from stack
-                    val msb = memoryBus.read((sp * 0x2.b).toUShort())
+                    val msb = memoryBus.read(sp.toUShort())
 
                     copy(
-                        sp = (sp - 0x1.b).toUByte(),
+                        sp = (sp - 0x2.b).toUByte(),
                         pc = ((msb shl 8) or lsb).toUShort()
                     )
                 }
@@ -61,7 +61,7 @@ class Chip8ControlUnit(
                 // This instruction is only used on the old computers on which Chip-8 was
                 // originally implemented. It is ignored by modern interpreters.
                 Logger.w { "instruction was ignored: $ins" }
-                registers.update(advance = 1)
+                registers.update(advance = 2)
             }
 
             is Chip8Instruction.jmp -> {
@@ -77,13 +77,13 @@ class Chip8ControlUnit(
                         throw StackOverflowException()
                     }
 
-                    val newSp = (sp + 0x1.b).toUByte()
+                    val newSp = (sp + 0x2.b).toUByte()
 
                     // Add MSB of PC to stack
-                    memoryBus.write((newSp * 0x2.b).toUShort(), ((pc or 0xFF00.s) shr 8).toUByte())
+                    memoryBus.write(newSp.toUShort(), ((pc or 0xFF00.s) shr 8).toUByte())
 
                     // Add LSB of PC to stack
-                    memoryBus.write((newSp * 0x2.b + 0x1.b).toUShort(), pc.toUByte())
+                    memoryBus.write((newSp + 0x1.b).toUShort(), pc.toUByte())
 
                     // PC = nnn, SP = SP + 1
                     copy(
@@ -94,15 +94,15 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.skeq -> {
-                registers.update(advance = if (registers.read.v[ins.x] == ins.nn) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] == ins.nn) 4 else 2)
             }
 
             is Chip8Instruction.skne -> {
-                registers.update(advance = if (registers.read.v[ins.x] != ins.nn) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] != ins.nn) 4 else 2)
             }
 
             is Chip8Instruction.skeq2 -> {
-                registers.update(advance = if (registers.read.v[ins.x] == registers.read.v[ins.y]) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] == registers.read.v[ins.y]) 4 else 2)
             }
 
             is Chip8Instruction.mov -> {
@@ -214,7 +214,7 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.skne2 -> {
-                registers.update(advance = if (registers.read.v[ins.x] != registers.read.v[ins.y]) 2 else 1)
+                registers.update(advance = if (registers.read.v[ins.x] != registers.read.v[ins.y]) 4 else 2)
             }
 
             is Chip8Instruction.mvi -> {
@@ -262,11 +262,11 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.skpr -> {
-                registers.update(advance = if (keypad.isKeyPressed(registers.read.v[ins.x])) 2 else 1)
+                registers.update(advance = if (keypad.isKeyPressed(registers.read.v[ins.x])) 4 else 2)
             }
 
             is Chip8Instruction.skup -> {
-                registers.update(advance = if (!keypad.isKeyPressed(registers.read.v[ins.x])) 2 else 1)
+                registers.update(advance = if (!keypad.isKeyPressed(registers.read.v[ins.x])) 4 else 2)
             }
 
             is Chip8Instruction.gdelay -> {
@@ -325,7 +325,7 @@ class Chip8ControlUnit(
                     memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit(n))
                 }
 
-                registers.update(advance = 1)
+                registers.update(advance = 2)
             }
 
             is Chip8Instruction.str -> {

@@ -20,7 +20,7 @@ data class Chip8Registers(
     /**
      * Program counter, points to the currently executing address.
      */
-    val pc: UShort = 0x00.s,
+    val pc: UShort = Chip8Constants.RAM_SECTION_PROGRAM,
 
     /**
      * Stack pointer, points to the topmost level of the stack.
