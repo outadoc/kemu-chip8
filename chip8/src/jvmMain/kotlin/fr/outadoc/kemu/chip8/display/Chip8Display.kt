@@ -1,6 +1,7 @@
 package fr.outadoc.kemu.chip8.display
 
 import fr.outadoc.kemu.display.Display
+import fr.outadoc.kemu.display.Point
 
 actual class Chip8Display : Display {
 
@@ -8,7 +9,7 @@ actual class Chip8Display : Display {
         TODO("Not yet implemented")
     }
 
-    override fun displaySprite(x: UByte, y: UByte, sprite: UByteArray): Boolean {
+    override fun displaySprite(position: Point<UByte>, sprite: UByteArray): Boolean {
         TODO("Not yet implemented")
     }
 }

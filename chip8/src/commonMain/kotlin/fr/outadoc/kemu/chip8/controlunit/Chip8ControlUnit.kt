@@ -11,6 +11,7 @@ import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Keypad
+import fr.outadoc.kemu.display.Point
 import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.shr
@@ -59,7 +60,8 @@ class Chip8ControlUnit(
             is Chip8Instruction.sys -> {
                 // This instruction is only used on the old computers on which Chip-8 was
                 // originally implemented. It is ignored by modern interpreters.
-                todo(ins)
+                Logger.w { "instruction was ignored: $ins" }
+                registers.update(advance = 1)
             }
 
             is Chip8Instruction.jmp -> {
@@ -237,7 +239,26 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.sprite -> {
-                todo(ins)
+                registers.update {
+                    // Copy n bytes from the sprite at address I
+                    val sprite = (i..(i + ins.n).toUShort()).map { addr ->
+                        memoryBus.read(addr.toUShort())
+                    }.toUByteArray()
+
+                    // Display sprite at address (Vx, Vy)
+                    val collision = display.displaySprite(
+                        position = Point(
+                            x = v[ins.x],
+                            y = v[ins.y]
+                        ),
+                        sprite = sprite
+                    )
+
+                    // Set Vf if there was a collision
+                    copy(v = v.copyOf().also { v ->
+                        v[0xf] = if (collision) 0x1.b else 0x0.b
+                    })
+                }
             }
 
             is Chip8Instruction.skpr -> {
@@ -335,10 +356,5 @@ class Chip8ControlUnit(
                 }
             }
         }
-    }
-
-    private fun todo(instruction: Chip8Instruction) {
-        Logger.w { "instruction was ignored: $instruction" }
-        registers.update(advance = 1)
     }
 }
