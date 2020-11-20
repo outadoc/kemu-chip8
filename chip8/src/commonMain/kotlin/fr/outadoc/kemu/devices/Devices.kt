@@ -1,6 +1,9 @@
 package fr.outadoc.kemu.devices
 
-interface CPU
+interface CPU {
+    fun start()
+    fun loop()
+}
 
 interface Timer
 

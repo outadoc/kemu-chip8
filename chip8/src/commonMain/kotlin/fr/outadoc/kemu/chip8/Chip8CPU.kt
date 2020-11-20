@@ -4,6 +4,7 @@ import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
 import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
 import fr.outadoc.kemu.chip8.memory.Chip8Bus
 import fr.outadoc.kemu.chip8.memory.Chip8RAM
+import fr.outadoc.kemu.chip8.processor.Chip8RegisterHolder
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.chip8.processor.RegisterAccessor
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
@@ -15,14 +16,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 
 @ExperimentalCoroutinesApi
-class Chip8CPU : CPU, RegisterAccessor<Chip8Registers> {
+class Chip8CPU : CPU {
 
-    private val _registers: MutableStateFlow<Chip8Registers> = MutableStateFlow(Chip8Registers())
-    override val flow: Flow<Chip8Registers>
-        get() = _registers
-
-    override val read: Chip8Registers
-        get() = _registers.value
+    val registerHolder = Chip8RegisterHolder()
 
     val decoder = Chip8InstructionDecoder()
     val random = DefaultRandomGenerator()
@@ -34,22 +30,17 @@ class Chip8CPU : CPU, RegisterAccessor<Chip8Registers> {
     )
 
     val timers = listOf(
-        Chip8DelayTimer(this),
-        Chip8SoundTimer(this)
+        Chip8DelayTimer(registerHolder),
+        Chip8SoundTimer(registerHolder)
     )
 
-    val controlUnit = Chip8ControlUnit(this, random, memoryBus)
+    val controlUnit = Chip8ControlUnit(registerHolder, random, memoryBus)
 
-    fun start() {
-        timers.forEach { it.start() }
+    override fun start() {
+        timers.forEach { timer -> timer.start() }
     }
 
-    override fun update(advance: Int, block: (Chip8Registers.() -> Chip8Registers)?) {
-        val updatedRegisters = (if (block != null) read.block() else read)
-        _registers.value = updatedRegisters.let { r ->
-            if (advance > 0) {
-                r.copy(pc = (r.pc + advance.s).toUShort())
-            } else r
-        }
+    override fun loop() {
+
     }
 }
