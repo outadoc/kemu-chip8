@@ -1,12 +1,10 @@
 package fr.outadoc.kemu.devices
 
-interface CPU {
+interface CPU
 
-}
+interface Timer
 
-interface Timer {
-
-}
+interface Registers
 
 interface Bus<Width> {
     fun read(addr: Width): UByte
@@ -16,10 +14,6 @@ interface Bus<Width> {
 interface BusDevice<Width> {
     fun read(addr: Width): UByte
     fun write(addr: Width, value: UByte)
-}
-
-interface Clock {
-
 }
 
 interface ControlUnit {

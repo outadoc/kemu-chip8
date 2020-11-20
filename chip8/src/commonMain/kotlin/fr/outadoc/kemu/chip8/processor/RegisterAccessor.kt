@@ -1,11 +1,19 @@
 package fr.outadoc.kemu.chip8.processor
 
-interface RegisterAccessor<T> {
+import fr.outadoc.kemu.devices.Registers
+import kotlinx.coroutines.flow.Flow
+
+interface RegisterAccessor<T : Registers> {
 
     /**
      * Read-only access to the registers.
      */
     val read: T
+
+    /**
+     * Flow of the registers, updated every time they change.
+     */
+    val flow: Flow<Chip8Registers>
 
     /**
      * Updates the registers.

@@ -2,16 +2,15 @@ package fr.outadoc.kemu.chip8.processor
 
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants
+import fr.outadoc.kemu.devices.Registers
 import fr.outadoc.kemu.s
-
-val V_REGISTER_COUNT = 16.toUInt()
 
 data class Chip8Registers(
 
     /**
      * General-purpose registers. v[0xf] should not be used by any programs.
      */
-    val v: UByteArray = UByteArray(V_REGISTER_COUNT.toInt()),
+    val v: UByteArray = UByteArray(16),
 
     /**
      * This register is generally used to store memory addresses, so only the lowest (rightmost) 12 bits are usually used.
@@ -37,7 +36,7 @@ data class Chip8Registers(
      * Sound timer register. Sound timer is enabled when value is non-zero.
      */
     val st: UByte = 0x00.b
-) {
+): Registers {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || this::class != other::class) return false

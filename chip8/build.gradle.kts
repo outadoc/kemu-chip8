@@ -16,10 +16,15 @@ kotlin {
     jvm()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
+            }
+        }
         val jvmMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.3.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1")
             }
         }
         val commonTest by getting {
