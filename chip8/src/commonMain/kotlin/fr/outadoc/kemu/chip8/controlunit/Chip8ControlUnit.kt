@@ -1,6 +1,9 @@
 package fr.outadoc.kemu.chip8.controlunit
 
 import fr.outadoc.kemu.*
+import fr.outadoc.kemu.chip8.Chip8Constants
+import fr.outadoc.kemu.chip8.exceptions.StackOverflowException
+import fr.outadoc.kemu.chip8.exceptions.StackUnderflowException
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.chip8.processor.RegisterAccessor
@@ -29,7 +32,23 @@ class Chip8ControlUnit(
             }
 
             Chip8Instruction.rts -> {
-                todo(ins)
+                registers.update(advance = 0) {
+                    if (sp == 0.b) {
+                        Logger.e { "FATAL: stack underflow" }
+                        throw StackUnderflowException()
+                    }
+
+                    // Read LSB of PC from stack
+                    val lsb = memoryBus.read((sp * 0x2.b + 0x1.b).toUShort())
+
+                    // Read LSB of PC from stack
+                    val msb = memoryBus.read((sp * 0x2.b).toUShort())
+
+                    copy(
+                        sp = (sp - 0x1.b).toUByte(),
+                        pc = ((msb shl 8) or lsb).toUShort()
+                    )
+                }
             }
 
             is Chip8Instruction.sys -> {
@@ -45,7 +64,26 @@ class Chip8ControlUnit(
             }
 
             is Chip8Instruction.jsr -> {
+                registers.update(advance = 0) {
+                    if (sp == Chip8Constants.MAX_SP) {
+                        Logger.e { "FATAL: stack overflow" }
+                        throw StackOverflowException()
+                    }
 
+                    val newSp = (sp + 0x1.b).toUByte()
+
+                    // Add MSB of PC to stack
+                    memoryBus.write((newSp * 0x2.b).toUShort(), ((pc or 0xFF00.s) shr 8).toUByte())
+
+                    // Add LSB of PC to stack
+                    memoryBus.write((newSp * 0x2.b + 0x1.b).toUShort(), pc.toUByte())
+
+                    // PC = nnn, SP = SP + 1
+                    copy(
+                        sp = newSp,
+                        pc = ins.nnn
+                    )
+                }
             }
 
             is Chip8Instruction.skeq -> {
