@@ -1,8 +1,8 @@
 package fr.outadoc.kemu.chip8.memory
 
 import fr.outadoc.kemu.b
-import fr.outadoc.kemu.devices.Bus
-import fr.outadoc.kemu.devices.BusDevice
+import fr.outadoc.kemu.memory.Bus
+import fr.outadoc.kemu.memory.BusDevice
 
 class Chip8Bus(private val devices: List<BusDevice<UShort>>) : Bus<UShort> {
 

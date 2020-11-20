@@ -1,7 +1,7 @@
 package fr.outadoc.kemu.chip8.memory
 
 import fr.outadoc.kemu.chip8.Chip8Constants
-import fr.outadoc.kemu.devices.BusDevice
+import fr.outadoc.kemu.memory.BusDevice
 import fr.outadoc.kemu.get
 import fr.outadoc.kemu.set
 

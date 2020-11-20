@@ -2,7 +2,7 @@ package fr.outadoc.kemu.chip8.processor
 
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants
-import fr.outadoc.kemu.devices.Registers
+import fr.outadoc.kemu.registers.Registers
 import fr.outadoc.kemu.s
 
 data class Chip8Registers(

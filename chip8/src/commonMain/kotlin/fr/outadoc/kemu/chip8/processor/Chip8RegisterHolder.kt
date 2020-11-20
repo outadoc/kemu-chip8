@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8.processor
 
+import fr.outadoc.kemu.registers.RegisterAccessor
 import fr.outadoc.kemu.s
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

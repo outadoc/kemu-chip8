@@ -1,4 +1,4 @@
-package fr.outadoc.kemu.devices
+package fr.outadoc.kemu.random
 
 import kotlin.random.Random
 

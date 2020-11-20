@@ -1,6 +1,6 @@
-package fr.outadoc.kemu.chip8.processor
+package fr.outadoc.kemu.registers
 
-import fr.outadoc.kemu.devices.Registers
+import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import kotlinx.coroutines.flow.Flow
 
 interface RegisterAccessor<T : Registers> {

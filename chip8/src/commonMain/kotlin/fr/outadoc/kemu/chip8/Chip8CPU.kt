@@ -5,15 +5,11 @@ import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
 import fr.outadoc.kemu.chip8.memory.Chip8Bus
 import fr.outadoc.kemu.chip8.memory.Chip8RAM
 import fr.outadoc.kemu.chip8.processor.Chip8RegisterHolder
-import fr.outadoc.kemu.chip8.processor.Chip8Registers
-import fr.outadoc.kemu.chip8.processor.RegisterAccessor
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
 import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
 import fr.outadoc.kemu.devices.CPU
-import fr.outadoc.kemu.devices.DefaultRandomGenerator
-import fr.outadoc.kemu.s
+import fr.outadoc.kemu.random.DefaultRandomGenerator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
 
 @ExperimentalCoroutinesApi
 class Chip8CPU : CPU {

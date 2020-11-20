@@ -6,10 +6,10 @@ import fr.outadoc.kemu.chip8.exceptions.StackOverflowException
 import fr.outadoc.kemu.chip8.exceptions.StackUnderflowException
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
-import fr.outadoc.kemu.chip8.processor.RegisterAccessor
-import fr.outadoc.kemu.devices.Bus
-import fr.outadoc.kemu.devices.ControlUnit
-import fr.outadoc.kemu.devices.RandomGenerator
+import fr.outadoc.kemu.registers.RegisterAccessor
+import fr.outadoc.kemu.memory.Bus
+import fr.outadoc.kemu.controlunit.ControlUnit
+import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.shr
 import kotlin.math.pow
