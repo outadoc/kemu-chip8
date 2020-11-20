@@ -20,7 +20,7 @@ import fr.outadoc.kemu.random.DefaultRandomGenerator
 import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.timer.Timer
 
-class Chip8CPU : CPU {
+class Chip8CPU(display: Display, keypad: Keypad) : CPU {
 
     private val registerHolder = Chip8RegisterHolder()
 
@@ -37,9 +37,6 @@ class Chip8CPU : CPU {
         Chip8DelayTimer(registerHolder),
         Chip8SoundTimer(registerHolder)
     )
-
-    private val display: Display = Chip8Display()
-    private val keypad: Keypad = Chip8Keypad()
 
     private val decoder = Chip8InstructionDecoder()
     private val controlUnit: ControlUnit =
