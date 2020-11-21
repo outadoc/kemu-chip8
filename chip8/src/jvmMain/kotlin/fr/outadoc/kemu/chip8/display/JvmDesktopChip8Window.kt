@@ -13,12 +13,14 @@ class JvmDesktopChip8Window {
     private val display = Chip8Display()
     private val keypad = Chip8Keypad()
 
+    private val displayDriver = Chip8DisplayMonitor(display)
+
     private val window = JFrame(APP_TITLE).apply {
         preferredSize = Dimension(1024, 512)
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         isResizable = false
         contentPane.apply {
-            add(display, BorderLayout.CENTER)
+            add(displayDriver, BorderLayout.CENTER)
             add(keypad, BorderLayout.EAST)
 
         }
