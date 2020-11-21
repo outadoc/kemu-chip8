@@ -34,11 +34,13 @@ class JvmDesktopChip8Window {
             stream.readBytes().toUByteArray()
         } ?: throw IllegalArgumentException("Could not open resource")
 
-        val cpu = Chip8CPU(display, keypad)
-        cpu.loadProgram(program)
-        cpu.start()
-        while (true) {
-            cpu.loop()
+        Chip8CPU(display, keypad).apply {
+            loadProgram(program)
+            start()
+            while (true) {
+                loop()
+                Thread.sleep(200)
+            }
         }
     }
 }

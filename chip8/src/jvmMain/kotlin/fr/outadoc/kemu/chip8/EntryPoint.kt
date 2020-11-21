@@ -1,5 +1,6 @@
-package fr.outadoc.kemu.chip8.display
+package fr.outadoc.kemu.chip8
 
+import fr.outadoc.kemu.chip8.display.JvmDesktopChip8Window
 import javax.swing.SwingUtilities
 import javax.swing.UIManager
 
@@ -15,7 +16,6 @@ fun main() {
     }
 
     SwingUtilities.invokeLater {
-        val window = JvmDesktopChip8Window()
-        window.start()
+        JvmDesktopChip8Window().start()
     }
 }
