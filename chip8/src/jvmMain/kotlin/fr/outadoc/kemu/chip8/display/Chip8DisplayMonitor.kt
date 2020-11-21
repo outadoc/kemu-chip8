@@ -20,8 +20,6 @@ class Chip8DisplayMonitor(private val display: Chip8Display) : JComponent() {
             (DISPLAY_HEIGHT * scaleFactor),
             (DISPLAY_WIDTH * scaleFactor)
         )
-
-        displayCheckerBoard()
     }
 
     override fun paintComponent(g: Graphics?) {
