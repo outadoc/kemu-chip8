@@ -4,6 +4,9 @@ import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Point
+import fr.outadoc.kemu.get
+import fr.outadoc.kemu.set
+import fr.outadoc.kemu.shr
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
@@ -70,6 +73,28 @@ actual class Chip8Display : Display, JComponent() {
     }
 
     override fun displaySprite(position: Point<UByte>, sprite: UByteArray): Boolean {
-        TODO("Not yet implemented")
+        val (x, y) = position
+        var hasAPixelBeenErased = false
+
+        sprite.forEachIndexed { iy, row ->
+            (0 until 8).map { bit ->
+                (row and ((1 shl bit).toUByte())) shr bit
+            }.forEachIndexed { ix, pixel ->
+                // Calculate screen coordinates for this pixel,
+                // possibly wrapping around to the opposite side of the screen
+                val targetX = (x + ix.toUShort()) % frameBufferWidth.toUShort()
+                val targetY = (y + iy.toUShort()) % frameBufferHeight.toUShort()
+                val frameBufferIndex = (targetX + targetY * frameBufferWidth.toUShort()).toUShort()
+
+                // xor the pixel onto the screen and check if we're erasing anything
+                val res = frameBuffer[frameBufferIndex] xor pixel
+                if (frameBuffer[frameBufferIndex] > res) {
+                    hasAPixelBeenErased = true
+                }
+                frameBuffer[frameBufferIndex] = res
+            }
+        }
+
+        return hasAPixelBeenErased
     }
 }
