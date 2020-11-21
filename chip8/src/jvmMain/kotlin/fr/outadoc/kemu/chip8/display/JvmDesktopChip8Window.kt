@@ -4,13 +4,16 @@ import java.awt.BorderLayout
 import java.awt.Dimension
 import javax.swing.JFrame
 
-
 class JvmDesktopChip8Window {
+
+    companion object {
+        const val APP_TITLE = "kemu-chip8"
+    }
 
     private val display = Chip8Display()
     private val keypad = Chip8Keypad()
 
-    private val window = JFrame("kemu-chip8").apply {
+    private val window = JFrame(APP_TITLE).apply {
         preferredSize = Dimension(1024, 512)
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         isResizable = false

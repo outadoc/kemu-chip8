@@ -14,4 +14,7 @@ object Chip8Constants {
     val MAX_SP = 0xF.b
 
     const val TIMER_FREQ_HZ = 1f / 60f
+
+    const val DISPLAY_HEIGHT = 32
+    const val DISPLAY_WIDTH = 64
 }
