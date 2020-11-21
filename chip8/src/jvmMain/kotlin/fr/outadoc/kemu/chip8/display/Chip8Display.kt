@@ -11,27 +11,22 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
 import java.awt.Graphics2D
-import java.awt.geom.AffineTransform
 import javax.swing.JComponent
 
 actual class Chip8Display : Display, JComponent() {
 
-    private val scaleFactor = 20.0
+    private val scaleFactor = 10
 
     private val frameBufferWidth = Chip8Constants.DISPLAY_WIDTH
     private val frameBufferHeight = Chip8Constants.DISPLAY_HEIGHT
     private val frameBuffer = UByteArray(frameBufferWidth * frameBufferHeight)
 
-    private val scaleTransform = AffineTransform().apply {
-        scale(scaleFactor, scaleFactor)
-    }
-
     init {
         background = Color.BLACK
         foreground = Color.WHITE
         size = Dimension(
-            (Chip8Constants.DISPLAY_HEIGHT * scaleFactor).toInt(),
-            (Chip8Constants.DISPLAY_WIDTH * scaleFactor).toInt()
+            (Chip8Constants.DISPLAY_HEIGHT * scaleFactor),
+            (Chip8Constants.DISPLAY_WIDTH * scaleFactor)
         )
 
         displayCheckerBoard()
@@ -47,14 +42,10 @@ actual class Chip8Display : Display, JComponent() {
 
             // Draw foreground color if bit is set, background otherwise
             g.color = if (pixel == 0x0.b) background else foreground
-            g.drawRect(x, y, 1, 1)
+            g.fillRect(
+                (x * scaleFactor), (y * scaleFactor), scaleFactor, scaleFactor
+            )
         }
-    }
-
-    override fun paint(g: Graphics?) {
-        if (g !is Graphics2D) return
-        g.transform = scaleTransform
-        super.paint(g)
     }
 
     override fun clear() {
