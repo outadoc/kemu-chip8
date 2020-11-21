@@ -19,6 +19,12 @@ kotlin {
                 jvmTarget = "1.8"
             }
         }
+
+        val test by compilations.getting {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
     }
 
     sourceSets {

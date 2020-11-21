@@ -63,8 +63,8 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
         val end = (start + program.size.toShort()).toShort()
 
         // Copy program into memory
-        for (addr in (start until end).map { it.toShort() }) {
-            memoryBus.write(addr, program[addr])
+        program.zip(start until end).forEach { (byte, addr) ->
+            memoryBus.write(addr.toShort(), byte)
         }
     }
 }
