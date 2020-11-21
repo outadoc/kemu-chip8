@@ -16,6 +16,6 @@ fun main() {
 
     SwingUtilities.invokeLater {
         val window = JvmDesktopChip8Window()
-        window.show()
+        window.start()
     }
 }

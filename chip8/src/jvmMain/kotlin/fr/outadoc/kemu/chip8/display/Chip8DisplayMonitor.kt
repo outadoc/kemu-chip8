@@ -17,8 +17,8 @@ class Chip8DisplayMonitor(private val display: Chip8Display) : JComponent() {
         background = Color.BLACK
         foreground = Color.WHITE
         size = Dimension(
-            (DISPLAY_HEIGHT * scaleFactor),
-            (DISPLAY_WIDTH * scaleFactor)
+            (DISPLAY_WIDTH * scaleFactor),
+            (DISPLAY_HEIGHT * scaleFactor)
         )
     }
 
