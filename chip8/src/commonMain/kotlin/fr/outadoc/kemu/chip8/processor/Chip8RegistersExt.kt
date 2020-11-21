@@ -1,4 +1,6 @@
 package fr.outadoc.kemu.chip8.processor
 
+import fr.outadoc.kemu.b
+
 val UByte.isValidVRegister: Boolean
-    get() = this < V_REGISTER_COUNT
+    get() = this < 16.b

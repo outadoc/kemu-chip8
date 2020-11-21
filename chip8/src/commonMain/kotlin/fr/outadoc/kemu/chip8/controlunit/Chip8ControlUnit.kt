@@ -25,7 +25,7 @@ class Chip8ControlUnit(
     private val keypad: Keypad
 ) : ControlUnit<Chip8Instruction> {
 
-    fun exec(ins: Chip8Instruction) {
+    override fun exec(ins: Chip8Instruction) {
         Logger.d { "executing $ins" }
 
         // Show register state
