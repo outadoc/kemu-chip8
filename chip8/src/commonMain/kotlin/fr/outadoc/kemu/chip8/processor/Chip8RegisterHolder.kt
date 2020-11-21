@@ -18,7 +18,7 @@ class Chip8RegisterHolder : RegisterAccessor<Chip8Registers> {
         val updatedRegisters = (if (block != null) read.block() else read)
         _registers.value = updatedRegisters.let { r ->
             if (advance > 0) {
-                r.copy(pc = (r.pc + advance.s).toUShort())
+                r.copy(pc = (r.pc + advance.s).toShort())
             } else r
         }
     }

@@ -31,7 +31,7 @@ class JvmDesktopChip8Window {
         window.isVisible = true
 
         val program = javaClass.classLoader.getResourceAsStream("test_opcode.ch8")?.use { stream ->
-            stream.readBytes().toUByteArray()
+            stream.readBytes()
         } ?: throw IllegalArgumentException("Could not open resource")
 
         Chip8CPU(display, keypad).apply {

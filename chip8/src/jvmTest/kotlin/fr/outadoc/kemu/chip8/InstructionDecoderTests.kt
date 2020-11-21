@@ -22,7 +22,7 @@ actual class InstructionDecoderTests {
     fun testInstructionDecoder(): Stream<DynamicTest> {
         return instructionDecoderTestSuite.map { (input, expected) ->
             dynamicTest("Decode $input correctly") {
-                val actual = decoder.parse(input.toUShort())
+                val actual = decoder.parse(input.toShort())
                 assertEquals(expected, actual)
             }
         }.stream()
@@ -33,7 +33,7 @@ actual class InstructionDecoderTests {
         return instructionDecoderIllegalTestSuite.map { input ->
             dynamicTest("Decode $input correctly") {
                 assertFails {
-                    decoder.parse(input.toUShort())
+                    decoder.parse(input.toShort())
                 }
             }
         }.stream()

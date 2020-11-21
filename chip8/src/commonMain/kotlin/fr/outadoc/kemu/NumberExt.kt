@@ -1,13 +1,13 @@
 package fr.outadoc.kemu
 
 inline val Int.s
-    get() = this.toUShort()
+    get() = this.toShort()
 
 inline val Int.b
-    get() = this.toUByte()
+    get() = this.toByte()
 
-inline infix fun UShort.shr(bitCount: Int): UShort = (toUInt() shr bitCount).toUShort()
-inline infix fun UByte.shr(bitCount: Int): UByte = (toUInt() shr bitCount).toUByte()
+inline infix fun Short.shr(bitCount: Int): Short = (toInt() shr bitCount).toShort()
+inline infix fun Byte.shr(bitCount: Int): Byte = (toInt() shr bitCount).toByte()
 
-inline infix fun UShort.shl(bitCount: Int): UShort = (toUInt() shl bitCount).toUShort()
-inline infix fun UByte.shl(bitCount: Int): UByte = (toUInt() shl bitCount).toUByte()
+inline infix fun Short.shl(bitCount: Int): Short = (toInt() shl bitCount).toShort()
+inline infix fun Byte.shl(bitCount: Int): Byte = (toInt() shl bitCount).toByte()
