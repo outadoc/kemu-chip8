@@ -5,15 +5,15 @@ import fr.outadoc.kemu.memory.BusDevice
 import fr.outadoc.kemu.get
 import fr.outadoc.kemu.set
 
-class Chip8RAM : BusDevice<Short> {
+class Chip8RAM : BusDevice<UShort> {
 
-    private val ram = ByteArray(Chip8Constants.RAM_SIZE)
+    private val ram = UByteArray(Chip8Constants.RAM_SIZE)
 
-    override fun read(addr: Short): Byte {
+    override fun read(addr: UShort): UByte {
         return ram[addr]
     }
 
-    override fun write(addr: Short, value: Byte) {
+    override fun write(addr: UShort, value: UByte) {
         ram[addr] = value
     }
 }

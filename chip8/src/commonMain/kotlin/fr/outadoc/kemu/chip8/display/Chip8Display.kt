@@ -8,12 +8,10 @@ import fr.outadoc.kemu.display.Point
 import fr.outadoc.kemu.get
 import fr.outadoc.kemu.set
 import fr.outadoc.kemu.shr
-import kotlin.experimental.and
-import kotlin.experimental.xor
 
 class Chip8Display : Display {
 
-    val frameBuffer = ByteArray(DISPLAY_WIDTH * DISPLAY_HEIGHT)
+    val frameBuffer = UByteArray(DISPLAY_WIDTH * DISPLAY_HEIGHT)
 
     override fun clear() {
         frameBuffer.indices.forEach { i ->
@@ -21,20 +19,20 @@ class Chip8Display : Display {
         }
     }
 
-    override fun displaySprite(position: Point<Byte>, sprite: ByteArray): Boolean {
+    override fun displaySprite(position: Point<UByte>, sprite: UByteArray): Boolean {
         val (x, y) = position
         var hasAPixelBeenErased = false
 
         sprite.forEachIndexed { iy, row ->
             (0 until 8).map { bit ->
-                (row and ((1 shl bit).toByte())) shr bit
+                (row and ((1 shl bit).toUByte())) shr bit
             }.forEachIndexed { ix, pixel ->
                 // Calculate screen coordinates for this pixel,
                 // possibly wrapping around to the opposite side of the screen
-                val targetX = (x + ix.toShort()) % DISPLAY_WIDTH.toShort()
-                val targetY = (y + iy.toShort()) % DISPLAY_HEIGHT.toShort()
+                val targetX = (x + ix.toUShort()) % DISPLAY_WIDTH.toUShort()
+                val targetY = (y + iy.toUShort()) % DISPLAY_HEIGHT.toUShort()
                 val frameBufferIndex =
-                    (targetX + targetY * DISPLAY_WIDTH.toShort()).toShort()
+                    (targetX + targetY * DISPLAY_WIDTH.toUShort()).toUShort()
 
                 // xor the pixel onto the screen and check if we're erasing anything
                 val res = frameBuffer[frameBufferIndex] xor pixel

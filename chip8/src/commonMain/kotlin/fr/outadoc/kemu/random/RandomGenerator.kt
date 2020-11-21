@@ -2,5 +2,5 @@ package fr.outadoc.kemu.random
 
 interface RandomGenerator {
     var seed: Int
-    fun nextByte(): Byte
+    fun nextByte(): UByte
 }

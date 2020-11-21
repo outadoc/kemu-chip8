@@ -13,7 +13,7 @@ class Chip8SoundTimer(private val registers: RegisterAccessor<Chip8Registers>) :
         // Decrement ST until it reaches zero
         if (registers.read.st > 0x0.b) {
             registers.update(advance = 0) {
-                copy(st = (st - 0x1.b).toByte())
+                copy(st = (st - 0x1.b).toUByte())
             }
         }
     }

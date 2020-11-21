@@ -13,7 +13,7 @@ class Chip8DelayTimer(private val registers: RegisterAccessor<Chip8Registers>) :
         // Decrement DT until it reaches zero
         if (registers.read.dt > 0x0.b) {
             registers.update(advance = 0) {
-                copy(dt = (dt - 0x1.b).toByte())
+                copy(dt = (dt - 0x1.b).toUByte())
             }
         }
     }

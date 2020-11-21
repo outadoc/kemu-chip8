@@ -12,7 +12,7 @@ class DefaultRandomGenerator : RandomGenerator {
 
     private var random = Random(seed)
 
-    override fun nextByte(): Byte {
-        return random.nextBits(8).toByte()
+    override fun nextByte(): UByte {
+        return random.nextBits(8).toUByte()
     }
 }

@@ -1,11 +1,11 @@
 package fr.outadoc.kemu
 
-inline operator fun ByteArray.get(index: Byte): Byte = this[index.toInt()]
-inline operator fun ByteArray.set(index: Byte, value: Byte) {
+inline operator fun UByteArray.get(index: UByte): UByte = this[index.toInt()]
+inline operator fun UByteArray.set(index: UByte, value: UByte) {
     this[index.toInt()] = value
 }
 
-inline operator fun ByteArray.get(index: Short): Byte = this[index.toInt()]
-inline operator fun ByteArray.set(index: Short, value: Byte) {
+inline operator fun UByteArray.get(index: UShort): UByte = this[index.toInt()]
+inline operator fun UByteArray.set(index: UShort, value: UByte) {
     this[index.toInt()] = value
 }

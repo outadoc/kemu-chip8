@@ -15,15 +15,12 @@ import fr.outadoc.kemu.display.Point
 import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.shr
-import kotlin.experimental.and
-import kotlin.experimental.or
-import kotlin.experimental.xor
 import kotlin.math.pow
 
 class Chip8ControlUnit(
     private val registers: RegisterAccessor<Chip8Registers>,
     private val random: RandomGenerator,
-    private val memoryBus: Bus<Short>,
+    private val memoryBus: Bus<UShort>,
     private val display: Display,
     private val keypad: Keypad
 ) : ControlUnit<Chip8Instruction> {
@@ -48,14 +45,14 @@ class Chip8ControlUnit(
                     }
 
                     // Read LSB of PC from stack
-                    val lsb = memoryBus.read((sp + 0x1.b).toShort())
+                    val lsb = memoryBus.read((sp + 0x1.b).toUShort())
 
                     // Read LSB of PC from stack
-                    val msb = memoryBus.read(sp.toShort())
+                    val msb = memoryBus.read(sp.toUShort())
 
                     copy(
-                        sp = (sp - 0x2.b).toByte(),
-                        pc = ((msb shl 8) or lsb).toShort()
+                        sp = (sp - 0x2.b).toUByte(),
+                        pc = ((msb shl 8) or lsb).toUShort()
                     )
                 }
             }
@@ -80,13 +77,13 @@ class Chip8ControlUnit(
                         throw StackOverflowException()
                     }
 
-                    val newSp = (sp + 0x2.b).toByte()
+                    val newSp = (sp + 0x2.b).toUByte()
 
                     // Add MSB of PC to stack
-                    memoryBus.write(newSp.toShort(), ((pc or 0xFF00.s) shr 8).toByte())
+                    memoryBus.write(newSp.toUShort(), ((pc or 0xFF00.s) shr 8).toUByte())
 
                     // Add LSB of PC to stack
-                    memoryBus.write((newSp + 0x1.b).toShort(), pc.toByte())
+                    memoryBus.write((newSp + 0x1.b).toUShort(), pc.toUByte())
 
                     // PC = nnn, SP = SP + 1
                     copy(
@@ -121,7 +118,7 @@ class Chip8ControlUnit(
                 registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx + nn
-                        v[ins.x] = (v[ins.x] + ins.nn).toByte()
+                        v[ins.x] = (v[ins.x] + ins.nn).toUByte()
                     })
                 }
             }
@@ -165,11 +162,11 @@ class Chip8ControlUnit(
             is Chip8Instruction.add2 -> {
                 registers.update {
                     copy(v = v.copyOf().also { v ->
-                        val res: Int = v[ins.x] + v[ins.y]
+                        val res: UInt = v[ins.x] + v[ins.y]
                         // Vx = Vx + Vy
-                        v[ins.x] = res.toByte()
+                        v[ins.x] = res.toUByte()
                         // Vf is the carry bit
-                        v[0xf] = if (res > 0xff.toByte()) 0x1.b else 0x0.b
+                        v[0xf] = if (res > 0xff.toUByte()) 0x1.b else 0x0.b
                     })
                 }
             }
@@ -178,7 +175,7 @@ class Chip8ControlUnit(
                 registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vx - Vy
-                        v[ins.x] = (v[ins.x] - v[ins.y]).toByte()
+                        v[ins.x] = (v[ins.x] - v[ins.y]).toUByte()
                         // Vf is the NOT borrow bit
                         v[0xf] = if (v[ins.x] > v[ins.y]) 0x1.b else 0x0.b
                     })
@@ -199,7 +196,7 @@ class Chip8ControlUnit(
                 registers.update {
                     copy(v = v.copyOf().also { v ->
                         // Vx = Vy - Vx
-                        v[ins.x] = (v[ins.y] - v[ins.x]).toByte()
+                        v[ins.x] = (v[ins.y] - v[ins.x]).toUByte()
                         // Vf is the NOT borrow bit
                         v[0xf] = if (v[ins.y] > v[ins.x]) 0x1.b else 0x0.b
                     })
@@ -228,7 +225,7 @@ class Chip8ControlUnit(
 
             is Chip8Instruction.jmi -> {
                 registers.update {
-                    copy(pc = (ins.nnn + v[0x0]).toShort())
+                    copy(pc = (ins.nnn + v[0x0]).toUShort())
                 }
             }
 
@@ -244,9 +241,9 @@ class Chip8ControlUnit(
             is Chip8Instruction.sprite -> {
                 registers.update {
                     // Copy n bytes from the sprite at address I
-                    val sprite = (i..(i + ins.n).toShort()).map { addr ->
-                        memoryBus.read(addr.toShort())
-                    }.toByteArray()
+                    val sprite = (i..(i + ins.n).toUShort()).map { addr ->
+                        memoryBus.read(addr.toUShort())
+                    }.toUByteArray()
 
                     // Display sprite at address (Vx, Vy)
                     val collision = display.displaySprite(
@@ -306,26 +303,26 @@ class Chip8ControlUnit(
             is Chip8Instruction.adi -> {
                 registers.update {
                     // I = I + Vx
-                    copy(i = (i + v[ins.x]).toShort())
+                    copy(i = (i + v[ins.x]).toUShort())
                 }
             }
 
             is Chip8Instruction.font -> {
                 registers.update {
-                    copy(i = (Chip8Constants.RAM_SECTION_SPRITES + v[ins.x]).toShort())
+                    copy(i = (Chip8Constants.RAM_SECTION_SPRITES + v[ins.x]).toUShort())
                 }
             }
 
             is Chip8Instruction.bcd -> {
-                fun Byte.nthBcdDigit(n: Byte): Byte {
+                fun UByte.nthBcdDigit(n: UByte): UByte {
                     // I don't see what you mean. Working with numerical types in Kotlin is fiiiine.
-                    return ((this / (10f.pow((n - 1.toInt()).toInt())).toInt()).rem(10.toInt())).toByte()
+                    return ((this / (10f.pow((n - 1.toUInt()).toInt())).toUInt()).rem(10.toUInt())).toUByte()
                 }
 
                 // Copy three base-10 digits of Vx to memory at I .. I + 2
                 val vx = registers.read.v[ins.x]
-                for (n in (0 until 3).map { it.toByte() }) {
-                    memoryBus.write((registers.read.i + n).toShort(), vx.nthBcdDigit(n))
+                for (n in (0 until 3).map { it.toUByte() }) {
+                    memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit(n))
                 }
 
                 registers.update(advance = 2)
@@ -333,13 +330,13 @@ class Chip8ControlUnit(
 
             is Chip8Instruction.str -> {
                 // Copy registers V0 .. Vx to memory at I .. I + x
-                for (iv in (0x0.b..ins.x).map { it.toByte() }) {
-                    memoryBus.write((registers.read.i + iv).toShort(), registers.read.v[iv])
+                for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
+                    memoryBus.write((registers.read.i + iv).toUShort(), registers.read.v[iv])
                 }
 
                 registers.update {
                     // I = I + x + 1
-                    copy(i = (i + ins.x + i).toShort())
+                    copy(i = (i + ins.x + i).toUShort())
                 }
             }
 
@@ -347,14 +344,14 @@ class Chip8ControlUnit(
                 // Copy memory at I .. I + x to registers V0 .. Vx
                 registers.update {
                     val v = v.copyOf()
-                    for (iv in (0x0.b..ins.x).map { it.toByte() }) {
-                        v[iv] = memoryBus.read((registers.read.i + iv).toShort())
+                    for (iv in (0x0.b..ins.x).map { it.toUByte() }) {
+                        v[iv] = memoryBus.read((registers.read.i + iv).toUShort())
                     }
 
                     // Additionally, I = I + x + 1
                     copy(
                         v = v,
-                        i = (i + ins.x + i).toShort()
+                        i = (i + ins.x + i).toUShort()
                     )
                 }
             }

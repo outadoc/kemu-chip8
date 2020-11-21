@@ -4,19 +4,19 @@ import fr.outadoc.kemu.b
 import fr.outadoc.kemu.get
 import fr.outadoc.kemu.memory.BusDevice
 
-abstract class ROM(private val start: Short) : BusDevice<Short> {
+abstract class ROM(private val start: UShort) : BusDevice<UShort> {
 
-    protected abstract val rom: ByteArray
+    protected abstract val rom: UByteArray
 
-    private val end: Short
-        get() = (start + rom.size.toShort()).toShort()
+    private val end: UShort
+        get() = (start + rom.size.toUShort()).toUShort()
 
-    override fun read(addr: Short): Byte {
+    override fun read(addr: UShort): UByte {
         if (addr !in start..end) return 0x0.b
-        return rom[(addr - start).toShort()]
+        return rom[(addr - start).toUShort()]
     }
 
-    override fun write(addr: Short, value: Byte) {
+    override fun write(addr: UShort, value: UByte) {
         // This is ROM
     }
 }

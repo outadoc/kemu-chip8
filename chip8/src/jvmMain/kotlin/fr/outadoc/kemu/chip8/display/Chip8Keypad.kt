@@ -7,16 +7,16 @@ import java.awt.event.KeyEvent
 actual class Chip8Keypad : Keypad, KeyEventDispatcher {
 
     private val alphabet = (('0'..'9').zip(0x0..0x9) + ('a'..'f').zip(0xa..0xf))
-        .map { (a, b) -> a to b.toByte() }
+        .map { (a, b) -> a to b.toUByte() }
         .toMap()
 
-    private val pressedKeys = mutableSetOf<Byte>()
+    private val pressedKeys = mutableSetOf<UByte>()
 
-    override fun isKeyPressed(key: Byte): Boolean {
+    override fun isKeyPressed(key: UByte): Boolean {
         return key in pressedKeys
     }
 
-    override fun waitForKeyPress(): Byte {
+    override fun waitForKeyPress(): UByte {
         while (pressedKeys.isEmpty()) {
             Thread.sleep(100)
         }
@@ -43,6 +43,6 @@ actual class Chip8Keypad : Keypad, KeyEventDispatcher {
         }
     }
 
-    private val Char.asHexChar: Byte?
+    private val Char.asHexChar: UByte?
         get() = alphabet[toLowerCase()]
 }

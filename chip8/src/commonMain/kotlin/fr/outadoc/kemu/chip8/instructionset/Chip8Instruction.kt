@@ -13,7 +13,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Execute machine language subroutine at address nnn.
      */
-    data class sys(val nnn: Short) : Chip8Instruction()
+    data class sys(val nnn: UShort) : Chip8Instruction()
 
     /**
      * Clear the screen
@@ -28,17 +28,17 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Jump to address nnn
      */
-    data class jmp(val nnn: Short) : Chip8Instruction()
+    data class jmp(val nnn: UShort) : Chip8Instruction()
 
     /**
      * Execute subroutine starting at address nnn
      */
-    data class jsr(val nnn: Short) : Chip8Instruction()
+    data class jsr(val nnn: UShort) : Chip8Instruction()
 
     /**
      * Skip the following instruction if the value of register Vx equals nn
      */
-    data class skeq(val x: Byte, val nn: Byte) : Chip8Instruction() {
+    data class skeq(val x: UByte, val nn: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -47,7 +47,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Skip the following instruction if the value of register Vx is not equal to nn
      */
-    data class skne(val x: Byte, val nn: Byte) : Chip8Instruction() {
+    data class skne(val x: UByte, val nn: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -56,7 +56,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Skip the following instruction if the value of register Vx is equal to the value of register Vy
      */
-    data class skeq2(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class skeq2(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -66,7 +66,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Store number nn in register Vx
      */
-    data class mov(val x: Byte, val nn: Byte) : Chip8Instruction() {
+    data class mov(val x: UByte, val nn: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -75,7 +75,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Add the value nn to register Vx
      */
-    data class add(val x: Byte, val nn: Byte) : Chip8Instruction() {
+    data class add(val x: UByte, val nn: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -84,7 +84,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Store the value of register Vy in register Vx
      */
-    data class mov2(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class mov2(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -94,7 +94,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Set Vx to Vx OR Vy
      */
-    data class or(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class or(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -104,7 +104,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Set Vx to Vx AND Vy
      */
-    data class and(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class and(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -114,7 +114,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Set Vx to Vx XOR Vy
      */
-    data class xor(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class xor(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -125,7 +125,7 @@ sealed class Chip8Instruction : Instruction {
      * Add the value of register Vy to register Vx; Set VF to 01 if a carry occurs
      * Set VF to 00 if a carry does not occur
      */
-    data class add2(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class add2(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -137,7 +137,7 @@ sealed class Chip8Instruction : Instruction {
      * Set VF to 00 if a borrow occurs
      * Set VF to 01 if a borrow does not occur
      */
-    data class sub(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class sub(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -149,7 +149,7 @@ sealed class Chip8Instruction : Instruction {
      * Set register VF to the least significant bit prior to the shift
      * Vy is unchanged
      */
-    data class shr(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class shr(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -161,7 +161,7 @@ sealed class Chip8Instruction : Instruction {
      * Set VF to 00 if a borrow occurs
      * Set VF to 01 if a borrow does not occur
      */
-    data class rsb(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class rsb(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -173,7 +173,7 @@ sealed class Chip8Instruction : Instruction {
      * Set register VF to the most significant bit prior to the shift
      * Vy is unchanged
      */
-    data class shl(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class shl(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -183,7 +183,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Skip the following instruction if the value of register Vx is not equal to the value of register Vy
      */
-    data class skne2(val x: Byte, val y: Byte) : Chip8Instruction() {
+    data class skne2(val x: UByte, val y: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -193,27 +193,27 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Store memory address nnn in register I
      */
-    data class mvi(val nnn: Short) : Chip8Instruction()
+    data class mvi(val nnn: UShort) : Chip8Instruction()
 
     /**
      * Jump to address nnn + V0
      */
-    data class jmi(val nnn: Short) : Chip8Instruction()
+    data class jmi(val nnn: UShort) : Chip8Instruction()
 
     /**
      * Set Vx to a random number with a mask of nn
      */
-    data class rand(val x: Byte, val nn: Byte) : Chip8Instruction() {
+    data class rand(val x: UByte, val nn: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
     }
 
     /**
-     * Draw a sprite at position Vx, Vy with n Bytes of sprite data starting at the address stored in I
+     * Draw a sprite at position Vx, Vy with n UBytes of sprite data starting at the address stored in I
      * Set VF to 01 if any set pixels are changed to unset, and 00 otherwise
      */
-    data class sprite(val x: Byte, val y: Byte, val n: Byte) : Chip8Instruction() {
+    data class sprite(val x: UByte, val y: UByte, val n: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
             check(y.isValidVRegister)
@@ -223,7 +223,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Skip the following instruction if the key corresponding to the hex value currently stored in register Vx is pressed
      */
-    data class skpr(val x: Byte) : Chip8Instruction() {
+    data class skpr(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -232,7 +232,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Skip the following instruction if the key corresponding to the hex value currently stored in register Vx is not pressed
      */
-    data class skup(val x: Byte) : Chip8Instruction() {
+    data class skup(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -241,7 +241,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Store the current value of the delay timer in register Vx
      */
-    data class gdelay(val x: Byte) : Chip8Instruction() {
+    data class gdelay(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -250,7 +250,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Wait for a keypress and store the result in register Vx
      */
-    data class key(val x: Byte) : Chip8Instruction() {
+    data class key(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -259,7 +259,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Set the delay timer to the value of register Vx
      */
-    data class sdelay(val x: Byte) : Chip8Instruction() {
+    data class sdelay(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -268,7 +268,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Set the sound timer to the value of register Vx
      */
-    data class ssound(val x: Byte) : Chip8Instruction() {
+    data class ssound(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -277,7 +277,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Add the value stored in register Vx to register I
      */
-    data class adi(val x: Byte) : Chip8Instruction() {
+    data class adi(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -286,7 +286,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Set I to the memory address of the sprite data corresponding to the hexadecimal digit stored in register Vx
      */
-    data class font(val x: Byte) : Chip8Instruction() {
+    data class font(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -295,7 +295,7 @@ sealed class Chip8Instruction : Instruction {
     /**
      * Store the binary-coded decimal equivalent of the value stored in register Vx at addresses I, I + 1, and I + 2
      */
-    data class bcd(val x: Byte) : Chip8Instruction() {
+    data class bcd(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -308,7 +308,7 @@ sealed class Chip8Instruction : Instruction {
      * NB: Erik Bryntse’s S-CHIP documentation incorrectly implies this instruction does not modify
      * the I register. Certain S-CHIP-compatible emulators may implement this instruction in this manner.
      */
-    data class str(val x: Byte) : Chip8Instruction() {
+    data class str(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }
@@ -321,7 +321,7 @@ sealed class Chip8Instruction : Instruction {
      * NB: Erik Bryntse’s S-CHIP documentation incorrectly implies this instruction does not modify
      * the I register. Certain S-CHIP-compatible emulators may implement this instruction in this manner.
      */
-    data class ldr(val x: Byte) : Chip8Instruction() {
+    data class ldr(val x: UByte) : Chip8Instruction() {
         init {
             check(x.isValidVRegister)
         }

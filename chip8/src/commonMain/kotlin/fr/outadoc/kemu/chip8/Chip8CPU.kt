@@ -20,7 +20,6 @@ import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.s
 import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.timer.Timer
-import kotlin.experimental.or
 
 class Chip8CPU(display: Display, keypad: Keypad) : CPU {
 
@@ -28,7 +27,7 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
 
     private val random: RandomGenerator = DefaultRandomGenerator()
 
-    private val memoryBus: Bus<Short> = Chip8Bus(
+    private val memoryBus: Bus<UShort> = Chip8Bus(
         listOf(
             Chip8RAM(),
             Chip8Sprites()
@@ -52,19 +51,19 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
         val pc = registerHolder.read.pc
 
         val msb = memoryBus.read(pc)
-        val lsb = memoryBus.read((pc + 1.s).toShort())
-        val ins = decoder.parse(((msb shl 8) or lsb).toShort())
+        val lsb = memoryBus.read((pc + 1.s).toUShort())
+        val ins = decoder.parse(((msb shl 8) or lsb).toUShort())
 
         controlUnit.exec(ins)
     }
 
-    override fun loadProgram(program: ByteArray) {
+    override fun loadProgram(program: UByteArray) {
         val start = Chip8Constants.RAM_SECTION_PROGRAM
-        val end = (start + program.size.toShort()).toShort()
+        val end = (start + program.size.toUShort()).toUShort()
 
         // Copy program into memory
         program.zip(start until end).forEach { (byte, addr) ->
-            memoryBus.write(addr.toShort(), byte)
+            memoryBus.write(addr.toUShort(), byte)
         }
     }
 }
