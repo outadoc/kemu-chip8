@@ -8,19 +8,30 @@ import fr.outadoc.kemu.shr
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
+import java.awt.Graphics2D
+import java.awt.geom.AffineTransform
 import javax.swing.JComponent
 
 actual class Chip8Display : Display, JComponent() {
 
-    init {
-        background = Color.BLACK
-        foreground = Color.WHITE
-        size = Dimension(Chip8Constants.DISPLAY_HEIGHT, Chip8Constants.DISPLAY_WIDTH)
-    }
+    private val scaleFactor = 100.0
 
     private val frameBufferWidth = Chip8Constants.DISPLAY_WIDTH / 8
     private val frameBufferHeight = Chip8Constants.DISPLAY_HEIGHT / 8
     private val frameBuffer = UByteArray(frameBufferWidth * frameBufferHeight)
+
+    private val scaleTransform = AffineTransform().apply {
+        scale(scaleFactor, scaleFactor)
+    }
+
+    init {
+        background = Color.BLACK
+        foreground = Color.WHITE
+        size = Dimension(
+            (Chip8Constants.DISPLAY_HEIGHT * scaleFactor).toInt(),
+            (Chip8Constants.DISPLAY_WIDTH * scaleFactor).toInt()
+        )
+    }
 
     override fun paintComponent(g: Graphics?) {
         g ?: return
@@ -40,6 +51,12 @@ actual class Chip8Display : Display, JComponent() {
                 g.drawRect(startX + bit, y, 1, 1)
             }
         }
+    }
+
+    override fun paint(g: Graphics?) {
+        if (g !is Graphics2D) return
+        g.transform = scaleTransform
+        super.paint(g)
     }
 
     override fun clear() {
