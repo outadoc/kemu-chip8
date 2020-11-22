@@ -4,6 +4,7 @@ import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
+import fr.outadoc.kemu.display.DisplayDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -15,7 +16,7 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JComponent
 
-class SwingChip8DisplayDriver : JComponent() {
+class SwingChip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
 
     private val scaleFactor = 10
 
@@ -31,7 +32,7 @@ class SwingChip8DisplayDriver : JComponent() {
         )
     }
 
-    fun attach(display: Chip8Display) {
+    override fun attach(display: Chip8Display) {
         job?.cancel()
         job = GlobalScope.launch(Dispatchers.Main) {
             display.frameBufferFlow.collect { fb ->
@@ -41,7 +42,7 @@ class SwingChip8DisplayDriver : JComponent() {
         }
     }
 
-    fun detach() {
+    override fun detach() {
         job?.cancel()
         job = null
         currentFrame = null

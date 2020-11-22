@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 class Chip8Display : Display {
 
-    val frameBufferFlow: MutableStateFlow<UByteArray2> =
+    override val frameBufferFlow: MutableStateFlow<UByteArray2> =
         MutableStateFlow(UByteArray2(DISPLAY_WIDTH * DISPLAY_HEIGHT))
 
     private fun useFrameBuffer(block: (UByteArray2) -> Unit) {
