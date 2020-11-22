@@ -1,4 +1,4 @@
-package fr.outadoc.kemu.devices
+package fr.outadoc.kemu
 
 import fr.outadoc.kemu.array.UByteArray2
 

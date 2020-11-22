@@ -17,7 +17,6 @@ import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.registers.RegisterAccessor
-import fr.outadoc.kemu.s
 import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.shr
 import kotlin.math.pow

@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8
 
+import fr.outadoc.kemu.CPU
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
 import fr.outadoc.kemu.chip8.display.Chip8Display
@@ -12,7 +13,6 @@ import fr.outadoc.kemu.chip8.processor.Chip8RegisterHolder
 import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
 import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
 import fr.outadoc.kemu.controlunit.ControlUnit
-import fr.outadoc.kemu.devices.CPU
 import fr.outadoc.kemu.display.Keypad
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.memory.Bus
@@ -21,9 +21,6 @@ import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.s
 import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.timer.Timer
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class Chip8CPU(keypad: Keypad) : CPU {
 

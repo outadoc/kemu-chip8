@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8.display
 
+import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.chip8.Chip8Runner
 import java.awt.BorderLayout
@@ -26,22 +27,14 @@ class SwingChip8Window {
     }
 
     private val window = JFrame(APP_TITLE).apply {
+        setLocationRelativeTo(null)
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         isResizable = false
-        setLocationRelativeTo(null)
         contentPane.apply {
             add(displayDriver, BorderLayout.CENTER)
         }
         pack()
     }
-
-    private val speeds = listOf(
-        "Super slow" to 200L,
-        "Slow" to 100L,
-        "Normal" to 50L,
-        "Fast" to 10L,
-        "Real-time" to 0L
-    )
 
     private val menuBar =
         JMenuBar().apply {
@@ -77,13 +70,13 @@ class SwingChip8Window {
                     add(
                         JMenu("Speed").apply {
                             val group = ButtonGroup()
-                            speeds.forEach { (speedLabel, delay) ->
+                            Speed.values().forEach { speed ->
                                 add(
-                                    JRadioButtonMenuItem(speedLabel).apply {
+                                    JRadioButtonMenuItem(speed.label).apply {
                                         group.add(this)
-                                        isSelected = runner.delay == delay
+                                        isSelected = runner.speed == speed
                                         addActionListener {
-                                            runner.delay = delay
+                                            runner.speed = speed
                                         }
                                     }
                                 )
@@ -95,7 +88,10 @@ class SwingChip8Window {
         }
 
     fun show() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keypad)
+        KeyboardFocusManager
+            .getCurrentKeyboardFocusManager()
+            .addKeyEventDispatcher(keypad)
+
         window.jMenuBar = menuBar
         window.isVisible = true
     }
@@ -104,4 +100,13 @@ class SwingChip8Window {
         val program = programFile.inputStream().readBytes().toUByteArray2()
         runner.execute(program)
     }
+
+    private val Speed.label
+        get() = when (this) {
+            Speed.SUPER_SLOW -> "Super slow"
+            Speed.SLOW -> "Slow"
+            Speed.NORMAL -> "Normal"
+            Speed.FAST -> "Fast"
+            Speed.REALTIME -> "Real-time"
+        }
 }

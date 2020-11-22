@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8
 
+import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.chip8.display.Chip8Display
 import fr.outadoc.kemu.display.DisplayDriver
@@ -17,7 +18,7 @@ class Chip8Runner(
     /**
      * Delay between each CPU tick, in milliseconds.
      */
-    var delay = 0L
+    var speed = Speed.REALTIME
 
     fun execute(program: UByteArray2) {
         stop()
@@ -36,7 +37,7 @@ class Chip8Runner(
             }
 
             while (coroutineContext.isActive && loop()) {
-                delay(delay)
+                delay(speed.delay)
             }
         }
     }
