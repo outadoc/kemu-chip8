@@ -13,6 +13,11 @@ class Chip8Runner(
 ) {
     private var programJob: Job? = null
 
+    /**
+     * Delay between each CPU tick, in milliseconds.
+     */
+    var delay = 100L
+
     fun execute(program: UByteArray2) {
         programJob?.cancel()
         programJob = GlobalScope.launch(Dispatchers.Default) {
@@ -26,7 +31,7 @@ class Chip8Runner(
             loadProgram(program)
             start()
             while (coroutineContext.isActive && loop()) {
-                delay(200)
+                delay(delay)
             }
         }
     }

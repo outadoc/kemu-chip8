@@ -35,6 +35,14 @@ class SwingChip8Window {
         pack()
     }
 
+    private val speeds = listOf(
+        "Super slow" to 200L,
+        "Slow" to 150L,
+        "Normal" to 100L,
+        "Fast" to 25L,
+        "Super fast" to 1L
+    )
+
     private val menuBar =
         JMenuBar().apply {
             add(
@@ -63,6 +71,22 @@ class SwingChip8Window {
                         JMenuItem("Stop").apply {
                             addActionListener {
                                 runner.stop()
+                            }
+                        }
+                    )
+                    add(
+                        JMenu("Speed").apply {
+                            val group = ButtonGroup()
+                            speeds.forEach { (speedLabel, delay) ->
+                                add(
+                                    JRadioButtonMenuItem(speedLabel).apply {
+                                        group.add(this)
+                                        isSelected = runner.delay == delay
+                                        addActionListener {
+                                            runner.delay = delay
+                                        }
+                                    }
+                                )
                             }
                         }
                     )
