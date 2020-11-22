@@ -11,7 +11,7 @@ object Chip8Constants {
     val RAM_SECTION_PROGRAM = 0x200.s
 
     val INITIAL_SP = 0x00.b
-    val MAX_SP = 0xF.b
+    val MAX_SP = 32.b
 
     const val TIMER_FREQ_HZ = 1f / 60f
 

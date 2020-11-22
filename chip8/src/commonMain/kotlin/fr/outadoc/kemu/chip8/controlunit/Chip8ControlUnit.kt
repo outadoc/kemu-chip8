@@ -5,14 +5,14 @@ import fr.outadoc.kemu.array.set
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants
-import fr.outadoc.kemu.exceptions.StackOverflowException
-import fr.outadoc.kemu.exceptions.StackUnderflowException
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Keypad
 import fr.outadoc.kemu.display.Point
+import fr.outadoc.kemu.exceptions.StackOverflowException
+import fr.outadoc.kemu.exceptions.StackUnderflowException
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.random.RandomGenerator
@@ -45,14 +45,14 @@ class Chip8ControlUnit(
                     }
 
                     // Read LSB of PC from stack
-                    val lsb = memoryBus.read((sp + 0x1.b).toUShort())
+                    val lsb = memoryBus.read((sp - 0x1.b).toUShort()).toUShort()
 
-                    // Read LSB of PC from stack
-                    val msb = memoryBus.read(sp.toUShort())
+                    // Read MSB of PC from stack
+                    val msb = memoryBus.read((sp - 0x2.b).toUShort()).toUShort()
 
                     copy(
                         sp = (sp - 0x2.b).toUByte(),
-                        pc = ((msb shl 8) or lsb).toUShort()
+                        pc = (msb shl 8) or lsb
                     )
                 }
             }
@@ -77,17 +77,15 @@ class Chip8ControlUnit(
                         throw StackOverflowException()
                     }
 
-                    val newSp = (sp + 0x2.b).toUByte()
-
                     // Add MSB of PC to stack
-                    memoryBus.write(newSp.toUShort(), ((pc or 0xFF00.s) shr 8).toUByte())
+                    memoryBus.write(sp.toUShort(), (pc shr 8).toUByte())
 
                     // Add LSB of PC to stack
-                    memoryBus.write((newSp + 0x1.b).toUShort(), pc.toUByte())
+                    memoryBus.write((sp + 0x1.b).toUShort(), pc.toUByte())
 
                     // PC = nnn, SP = SP + 1
                     copy(
-                        sp = newSp,
+                        sp = (sp + 0x2.b).toUByte(),
                         pc = ins.nnn
                     )
                 }
