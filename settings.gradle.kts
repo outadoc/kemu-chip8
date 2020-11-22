@@ -1,3 +1,4 @@
+include(":kemu")
 rootProject.name = "CHIP-8"
 
 include(":chip8")

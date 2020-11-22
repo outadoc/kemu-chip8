@@ -1,6 +1,5 @@
 package fr.outadoc.kemu.registers
 
-import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import kotlinx.coroutines.flow.Flow
 
 interface RegisterAccessor<T : Registers> {
@@ -13,7 +12,7 @@ interface RegisterAccessor<T : Registers> {
     /**
      * Flow of the registers, updated every time they change.
      */
-    val flow: Flow<Chip8Registers>
+    val flow: Flow<T>
 
     /**
      * Updates the registers.
