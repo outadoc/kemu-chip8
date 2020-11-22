@@ -36,7 +36,8 @@ class Chip8Display : Display {
 
         useFrameBuffer { frameBuffer ->
             sprite.forEachIndexed { iy, row ->
-                (0 until 8).map { bit ->
+                (7 downTo 0).map { bit ->
+                    // Sprite is laid out from left (msb) to right (lsb)
                     (row and ((1 shl bit).toUByte())) shr bit
                 }.forEachIndexed { ix, pixel ->
                     // Calculate screen coordinates for this pixel,

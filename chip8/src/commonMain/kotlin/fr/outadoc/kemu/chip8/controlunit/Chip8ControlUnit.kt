@@ -246,7 +246,7 @@ class Chip8ControlUnit(
             is Chip8Instruction.sprite -> {
                 registers.update {
                     // Copy n bytes from the sprite at address I
-                    val sprite = (i..(i + ins.n).toUShort()).map { addr ->
+                    val sprite = (i until (i + ins.n).toUShort()).map { addr ->
                         memoryBus.read(addr.toUShort())
                     }.toUByteArray2()
 
