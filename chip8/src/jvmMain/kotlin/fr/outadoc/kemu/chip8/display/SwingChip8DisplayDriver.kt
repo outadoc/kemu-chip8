@@ -15,12 +15,11 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JComponent
 
-class Chip8DisplayMonitor : JComponent() {
+class SwingChip8DisplayDriver : JComponent() {
 
     private val scaleFactor = 10
 
-    private var latestFrame: UByteArray2? = null
-
+    private var currentFrame: UByteArray2? = null
     private var job: Job? = null
 
     init {
@@ -32,20 +31,32 @@ class Chip8DisplayMonitor : JComponent() {
         )
     }
 
-    fun attachToDisplay(display: Chip8Display) {
+    fun attach(display: Chip8Display) {
         job?.cancel()
         job = GlobalScope.launch(Dispatchers.Main) {
             display.frameBufferFlow.collect { fb ->
-                latestFrame = fb.copyOf()
+                currentFrame = fb.copyOf()
                 repaint()
             }
         }
     }
 
+    fun detach() {
+        job?.cancel()
+        job = null
+        currentFrame = null
+        repaint()
+    }
+
     override fun paintComponent(g: Graphics?) {
         if (g !is Graphics2D) return
 
-        latestFrame?.forEachIndexed { i, pixel ->
+        if (currentFrame == null) {
+            super.paintComponent(g)
+            return
+        }
+
+        currentFrame?.forEachIndexed { i, pixel ->
             // Byte i in buffer is at screen position (i mod width, i / width)
             val x = i % DISPLAY_WIDTH
             val y = i / DISPLAY_WIDTH
@@ -57,15 +68,4 @@ class Chip8DisplayMonitor : JComponent() {
             )
         }
     }
-
-    private fun displayCheckerBoard() {
-        val frameBuffer = latestFrame ?: return
-        frameBuffer.indices.forEach { i ->
-            val x = i % DISPLAY_WIDTH
-            val y = i / DISPLAY_WIDTH
-            frameBuffer[i] =
-                if ((x % 2 == 0 && y % 2 == 1) || (x % 2 == 1 && y % 2 == 0)) 0x0.b else 0x1.b
-        }
-    }
-
 }
