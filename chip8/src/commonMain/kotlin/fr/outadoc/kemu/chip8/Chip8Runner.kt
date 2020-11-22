@@ -17,7 +17,7 @@ class Chip8Runner(
     /**
      * Delay between each CPU tick, in milliseconds.
      */
-    var delay = 100L
+    var delay = 0L
 
     fun execute(program: UByteArray2) {
         stop()

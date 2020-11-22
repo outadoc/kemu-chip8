@@ -37,10 +37,10 @@ class SwingChip8Window {
 
     private val speeds = listOf(
         "Super slow" to 200L,
-        "Slow" to 150L,
-        "Normal" to 100L,
-        "Fast" to 25L,
-        "Super fast" to 1L
+        "Slow" to 100L,
+        "Normal" to 50L,
+        "Fast" to 10L,
+        "Real-time" to 0L
     )
 
     private val menuBar =
