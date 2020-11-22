@@ -1,9 +1,7 @@
 package fr.outadoc.kemu.chip8.display
 
-import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.array.toUByteArray2
-import fr.outadoc.kemu.chip8.Chip8CPU
-import kotlinx.coroutines.*
+import fr.outadoc.kemu.chip8.Chip8Runner
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
 import java.awt.Toolkit
@@ -11,10 +9,8 @@ import java.awt.event.KeyEvent
 import java.io.File
 import javax.swing.*
 import javax.swing.filechooser.FileNameExtensionFilter
-import kotlin.coroutines.coroutineContext
 
-
-class SwingChip8Runner {
+class SwingChip8Window {
 
     companion object {
         const val APP_TITLE = "kemu-chip8"
@@ -22,6 +18,8 @@ class SwingChip8Runner {
 
     private val keypad = AwtChip8Keypad()
     private val displayDriver = SwingChip8DisplayDriver()
+
+    private val runner = Chip8Runner(keypad, displayDriver)
 
     private val fileChooser = JFileChooser().apply {
         fileFilter = FileNameExtensionFilter("CHIP-8 Program", "ch8")
@@ -64,7 +62,7 @@ class SwingChip8Runner {
                     add(
                         JMenuItem("Stop").apply {
                             addActionListener {
-                                stop()
+                                runner.stop()
                             }
                         }
                     )
@@ -78,30 +76,8 @@ class SwingChip8Runner {
         window.isVisible = true
     }
 
-    private var programJob: Job? = null
-
     private fun execute(programFile: File) {
         val program = programFile.inputStream().readBytes().toUByteArray2()
-        programJob?.cancel()
-        programJob = GlobalScope.launch(Dispatchers.Default) {
-            runProgram(program)
-        }
-    }
-
-    private suspend fun runProgram(program: UByteArray2) {
-        Chip8CPU(keypad).apply {
-            displayDriver.attach(display)
-            loadProgram(program)
-            start()
-            while (coroutineContext.isActive && loop()) {
-                delay(200)
-            }
-        }
-    }
-
-    private fun stop() {
-        displayDriver.detach()
-        programJob?.cancel()
-        programJob = null
+        runner.execute(program)
     }
 }

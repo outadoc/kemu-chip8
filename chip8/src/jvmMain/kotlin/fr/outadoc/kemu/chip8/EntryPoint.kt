@@ -1,6 +1,6 @@
 package fr.outadoc.kemu.chip8
 
-import fr.outadoc.kemu.chip8.display.SwingChip8Runner
+import fr.outadoc.kemu.chip8.display.SwingChip8Window
 import javax.swing.SwingUtilities
 import javax.swing.UIManager
 
@@ -9,7 +9,7 @@ fun main() {
         System.setProperty("apple.laf.useScreenMenuBar", "true")
         System.setProperty(
             "com.apple.mrj.application.apple.menu.about.name",
-            SwingChip8Runner.APP_TITLE
+            SwingChip8Window.APP_TITLE
         )
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
     } catch (ex: Exception) {
@@ -17,6 +17,6 @@ fun main() {
     }
 
     SwingUtilities.invokeLater {
-        SwingChip8Runner().show()
+        SwingChip8Window().show()
     }
 }
