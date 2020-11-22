@@ -22,7 +22,6 @@ class JvmDesktopChip8Window {
     private val displayDriver = Chip8DisplayMonitor(display)
 
     private val window = JFrame(APP_TITLE).apply {
-        preferredSize = displayDriver.size
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         isResizable = false
         contentPane.apply {
