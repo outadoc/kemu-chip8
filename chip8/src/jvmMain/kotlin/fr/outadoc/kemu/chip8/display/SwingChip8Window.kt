@@ -3,6 +3,7 @@ package fr.outadoc.kemu.chip8.display
 import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.chip8.Chip8Runner
+import fr.outadoc.kemu.theme.Theme
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
 import java.awt.Toolkit
@@ -85,6 +86,26 @@ class SwingChip8Window {
                     )
                 }
             )
+            add(
+                JMenu("Display").apply {
+                    add(
+                        JMenu("Theme").apply {
+                            val group = ButtonGroup()
+                            Theme.values().forEach { theme ->
+                                add(
+                                    JRadioButtonMenuItem(theme.label).apply {
+                                        group.add(this)
+                                        isSelected = (displayDriver.theme == theme)
+                                        addActionListener {
+                                            displayDriver.theme = theme
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            )
         }
 
     fun show() {
@@ -108,5 +129,12 @@ class SwingChip8Window {
             Speed.NORMAL -> "Normal"
             Speed.FAST -> "Fast"
             Speed.REALTIME -> "Real-time"
+        }
+
+    private val Theme.label
+        get() = when (this) {
+            Theme.WHITE_ON_BLACK -> "White on black"
+            Theme.BLACK_ON_WHITE -> "Black on white"
+            Theme.MATRIX -> "Matrix"
         }
 }

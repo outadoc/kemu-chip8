@@ -1,0 +1,12 @@
+package fr.outadoc.kemu.theme
+
+data class Color(val r: Int, val g: Int, val b: Int)
+
+fun String.toColor(): Color {
+    val sanitized = replace("#", "").toLowerCase()
+    return Color(
+        r = sanitized.substring(0 until 2).toInt(16),
+        g = sanitized.substring(2 until 4).toInt(16),
+        b = sanitized.substring(4 until 6).toInt(16)
+    )
+}

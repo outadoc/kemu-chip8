@@ -5,6 +5,8 @@ import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
 import fr.outadoc.kemu.display.DisplayDriver
+import fr.outadoc.kemu.theme.Theme
+import fr.outadoc.kemu.theme.toColor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -23,9 +25,15 @@ class SwingChip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
     private var currentFrame: UByteArray2? = null
     private var job: Job? = null
 
+    var theme: Theme = Theme.WHITE_ON_BLACK
+        set(value) {
+            field = value
+            background = value.background.toColor()
+            foreground = value.foreground.toColor()
+            repaint()
+        }
+
     init {
-        background = Color.BLACK
-        foreground = Color.WHITE
         preferredSize = Dimension(
             (DISPLAY_WIDTH * scaleFactor),
             (DISPLAY_HEIGHT * scaleFactor)
