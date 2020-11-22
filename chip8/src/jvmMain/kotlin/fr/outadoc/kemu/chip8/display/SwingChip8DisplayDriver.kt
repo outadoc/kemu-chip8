@@ -12,7 +12,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
 import java.awt.Graphics2D
@@ -34,6 +33,9 @@ class SwingChip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
         }
 
     init {
+        background = theme.background.toColor()
+        foreground = theme.foreground.toColor()
+
         preferredSize = Dimension(
             (DISPLAY_WIDTH * scaleFactor),
             (DISPLAY_HEIGHT * scaleFactor)

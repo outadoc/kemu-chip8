@@ -69,6 +69,18 @@ class SwingChip8Window {
                         }
                     )
                     add(
+                        JMenuItem("Reset").apply {
+                            accelerator = KeyStroke.getKeyStroke(
+                                KeyEvent.VK_R,
+                                Toolkit.getDefaultToolkit().menuShortcutKeyMask
+                            )
+
+                            addActionListener {
+                                runner.reset()
+                            }
+                        }
+                    )
+                    add(
                         JMenu("Speed").apply {
                             val group = ButtonGroup()
                             Speed.values().forEach { speed ->
