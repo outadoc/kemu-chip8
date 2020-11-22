@@ -14,6 +14,7 @@ import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.devices.CPU
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Keypad
+import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.random.DefaultRandomGenerator
 import fr.outadoc.kemu.random.RandomGenerator
@@ -50,9 +51,12 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
     override fun loop() {
         val pc = registerHolder.read.pc
 
-        val msb = memoryBus.read(pc)
-        val lsb = memoryBus.read((pc + 1.s).toUShort())
-        val ins = decoder.parse(((msb shl 8) or lsb).toUShort())
+        val msb = memoryBus.read(pc).toUShort()
+        val lsb = memoryBus.read((pc + 1.s).toUShort()).toUShort()
+        val opCode = ((msb shl 8) or lsb)
+
+        Logger.d { "decoding 0x${opCode.toString(16)}" }
+        val ins = decoder.parse(opCode)
 
         controlUnit.exec(ins)
     }

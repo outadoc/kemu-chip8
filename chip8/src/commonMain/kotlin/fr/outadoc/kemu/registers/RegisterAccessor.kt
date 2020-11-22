@@ -22,6 +22,6 @@ interface RegisterAccessor<T : Registers> {
      * @param block The [block] will be executed with the current value of the registers,
      * and its return value will be used as their new value.
      */
-    fun update(advance: Int = 1, block: (T.() -> T)? = null)
+    fun update(advance: Int = 2, block: (T.() -> T)? = null)
 }
 
