@@ -314,13 +314,13 @@ class Chip8ControlUnit(
             is Chip8Instruction.bcd -> {
                 fun UByte.nthBcdDigit(n: UByte): UByte {
                     // I don't see what you mean. Working with numerical types in Kotlin is fiiiine.
-                    return ((this / (10f.pow((n - 1.toUInt()).toInt())).toUInt()).rem(10.toUInt())).toUByte()
+                    return ((this / (10f.pow((n.toUInt()).toInt())).toUInt()).rem(10.toUInt())).toUByte()
                 }
 
                 // Copy three base-10 digits of Vx to memory at I .. I + 2
                 val vx = registers.read.v[ins.x]
                 for (n in (0 until 3).map { it.toUByte() }) {
-                    memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit(n))
+                    memoryBus.write((registers.read.i + n).toUShort(), vx.nthBcdDigit((2u - n).toUByte()))
                 }
 
                 registers.update(advance = 2)
