@@ -21,6 +21,9 @@ import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.s
 import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.timer.Timer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class Chip8CPU(keypad: Keypad) : CPU {
 
@@ -45,7 +48,7 @@ class Chip8CPU(keypad: Keypad) : CPU {
     private val controlUnit: ControlUnit<Chip8Instruction> =
         Chip8ControlUnit(registerHolder, random, memoryBus, display, keypad)
 
-    override fun start() {
+    override suspend fun initializeTimers() {
         timers.forEach { timer -> timer.start() }
     }
 

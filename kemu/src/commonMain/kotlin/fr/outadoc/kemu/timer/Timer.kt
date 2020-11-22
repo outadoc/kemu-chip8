@@ -1,5 +1,5 @@
 package fr.outadoc.kemu.timer
 
 interface Timer {
-    fun start()
+    suspend fun start()
 }

@@ -12,6 +12,7 @@ class Chip8Runner(
     private val displayDriver: DisplayDriver<Chip8Display>
 ) {
     private var programJob: Job? = null
+    private var timersJob: Job? = null
 
     /**
      * Delay between each CPU tick, in milliseconds.
@@ -19,7 +20,7 @@ class Chip8Runner(
     var delay = 100L
 
     fun execute(program: UByteArray2) {
-        programJob?.cancel()
+        stop()
         programJob = GlobalScope.launch(Dispatchers.Default) {
             runProgram(program)
         }
@@ -29,7 +30,11 @@ class Chip8Runner(
         Chip8CPU(keypad).apply {
             displayDriver.attach(display)
             loadProgram(program)
-            start()
+
+            timersJob = GlobalScope.launch(Dispatchers.Default) {
+                initializeTimers()
+            }
+
             while (coroutineContext.isActive && loop()) {
                 delay(delay)
             }
@@ -38,6 +43,8 @@ class Chip8Runner(
 
     fun stop() {
         displayDriver.detach()
+        timersJob?.cancel()
+        timersJob = null
         programJob?.cancel()
         programJob = null
     }
