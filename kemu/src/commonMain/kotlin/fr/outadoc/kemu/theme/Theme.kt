@@ -11,6 +11,14 @@ enum class Theme(val background: Color, val foreground: Color) {
     ),
     MATRIX(
         background = "#000000".toColor(),
-        foreground = "#00FF00".toColor()
+        foreground = "#00ff00".toColor()
+    ),
+    SOLARIZED_DARK(
+        background = "#002833".toColor(),
+        foreground = "#839495".toColor()
+    ),
+    SOLARIZED_LIGHT(
+        background = "#fdf6e3".toColor(),
+        foreground = "#657b83".toColor()
     )
 }

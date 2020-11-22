@@ -148,5 +148,7 @@ class SwingChip8Window {
             Theme.WHITE_ON_BLACK -> "White on black"
             Theme.BLACK_ON_WHITE -> "Black on white"
             Theme.MATRIX -> "Matrix"
+            Theme.SOLARIZED_DARK -> "Solarized Dark"
+            Theme.SOLARIZED_LIGHT -> "Solarized Light"
         }
 }
