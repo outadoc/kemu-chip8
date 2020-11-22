@@ -7,7 +7,7 @@ object Chip8Constants {
 
     const val RAM_SIZE = 4096
 
-    val RAM_SECTION_SPRITES = 0x10.s
+    val RAM_SECTION_SPRITES = 0x40.s
     val RAM_SECTION_PROGRAM = 0x200.s
 
     val INITIAL_SP = 0x00.b

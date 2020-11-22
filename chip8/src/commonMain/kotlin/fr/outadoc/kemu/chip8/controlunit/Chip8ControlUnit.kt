@@ -307,7 +307,7 @@ class Chip8ControlUnit(
 
             is Chip8Instruction.font -> {
                 registers.update {
-                    copy(i = (Chip8Constants.RAM_SECTION_SPRITES + v[ins.x]).toUShort())
+                    copy(i = (Chip8Constants.RAM_SECTION_SPRITES + (v[ins.x] * 5u)).toUShort())
                 }
             }
 
