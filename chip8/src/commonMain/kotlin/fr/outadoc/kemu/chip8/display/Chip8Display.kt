@@ -1,17 +1,18 @@
 package fr.outadoc.kemu.chip8.display
 
+import fr.outadoc.kemu.array.UByteArray2
+import fr.outadoc.kemu.array.get
+import fr.outadoc.kemu.array.set
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Point
-import fr.outadoc.kemu.get
-import fr.outadoc.kemu.set
 import fr.outadoc.kemu.shr
 
 class Chip8Display : Display {
 
-    val frameBuffer = UByteArray(DISPLAY_WIDTH * DISPLAY_HEIGHT)
+    val frameBuffer = UByteArray2(DISPLAY_WIDTH * DISPLAY_HEIGHT)
 
     override fun clear() {
         frameBuffer.indices.forEach { i ->
@@ -19,7 +20,7 @@ class Chip8Display : Display {
         }
     }
 
-    override fun displaySprite(position: Point<UByte>, sprite: UByteArray): Boolean {
+    override fun displaySprite(position: Point<UByte>, sprite: UByteArray2): Boolean {
         val (x, y) = position
         var hasAPixelBeenErased = false
 

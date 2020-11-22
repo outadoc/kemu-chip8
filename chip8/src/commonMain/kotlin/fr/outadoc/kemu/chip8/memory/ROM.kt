@@ -1,12 +1,13 @@
 package fr.outadoc.kemu.chip8.memory
 
+import fr.outadoc.kemu.array.UByteArray2
+import fr.outadoc.kemu.array.get
 import fr.outadoc.kemu.b
-import fr.outadoc.kemu.get
 import fr.outadoc.kemu.memory.BusDevice
 
 abstract class ROM(private val start: UShort) : BusDevice<UShort> {
 
-    protected abstract val rom: UByteArray
+    protected abstract val rom: UByteArray2
 
     private val end: UShort
         get() = (start + rom.size.toUShort()).toUShort()

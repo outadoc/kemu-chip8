@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8.display
 
+import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.chip8.Chip8CPU
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
@@ -31,7 +32,7 @@ class JvmDesktopChip8Window {
         window.isVisible = true
 
         val program = javaClass.classLoader.getResourceAsStream("test_opcode.ch8")?.use { stream ->
-            stream.readBytes().toUByteArray()
+            stream.readBytes().toUByteArray2()
         } ?: throw IllegalArgumentException("Could not open resource")
 
         Chip8CPU(display, keypad).apply {

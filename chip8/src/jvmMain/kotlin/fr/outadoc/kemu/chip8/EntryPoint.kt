@@ -7,7 +7,8 @@ import javax.swing.UIManager
 fun main() {
     try {
         System.setProperty("apple.laf.useScreenMenuBar", "true")
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name",
+        System.setProperty(
+            "com.apple.mrj.application.apple.menu.about.name",
             JvmDesktopChip8Window.APP_TITLE
         )
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())

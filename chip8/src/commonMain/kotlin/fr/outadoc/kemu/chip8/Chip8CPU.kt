@@ -1,5 +1,6 @@
 package fr.outadoc.kemu.chip8
 
+import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
@@ -13,7 +14,6 @@ import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.devices.CPU
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Keypad
-import fr.outadoc.kemu.get
 import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.random.DefaultRandomGenerator
 import fr.outadoc.kemu.random.RandomGenerator
@@ -57,7 +57,7 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
         controlUnit.exec(ins)
     }
 
-    override fun loadProgram(program: UByteArray) {
+    override fun loadProgram(program: UByteArray2) {
         val start = Chip8Constants.RAM_SECTION_PROGRAM
         val end = (start + program.size.toUShort()).toUShort()
 

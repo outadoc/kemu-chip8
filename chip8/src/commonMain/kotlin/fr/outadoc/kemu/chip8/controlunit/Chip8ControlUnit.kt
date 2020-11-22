@@ -1,19 +1,24 @@
 package fr.outadoc.kemu.chip8.controlunit
 
-import fr.outadoc.kemu.*
+import fr.outadoc.kemu.array.get
+import fr.outadoc.kemu.array.set
+import fr.outadoc.kemu.array.toUByteArray2
+import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants
 import fr.outadoc.kemu.chip8.exceptions.StackOverflowException
 import fr.outadoc.kemu.chip8.exceptions.StackUnderflowException
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
-import fr.outadoc.kemu.registers.RegisterAccessor
-import fr.outadoc.kemu.memory.Bus
 import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Keypad
 import fr.outadoc.kemu.display.Point
-import fr.outadoc.kemu.random.RandomGenerator
 import fr.outadoc.kemu.logging.Logger
+import fr.outadoc.kemu.memory.Bus
+import fr.outadoc.kemu.random.RandomGenerator
+import fr.outadoc.kemu.registers.RegisterAccessor
+import fr.outadoc.kemu.s
+import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.shr
 import kotlin.math.pow
 
@@ -243,7 +248,7 @@ class Chip8ControlUnit(
                     // Copy n bytes from the sprite at address I
                     val sprite = (i..(i + ins.n).toUShort()).map { addr ->
                         memoryBus.read(addr.toUShort())
-                    }.toUByteArray()
+                    }.toUByteArray2()
 
                     // Display sprite at address (Vx, Vy)
                     val collision = display.displaySprite(
