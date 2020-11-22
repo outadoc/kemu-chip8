@@ -55,15 +55,23 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
         val lsb = memoryBus.read((pc + 1.s).toUShort()).toUShort()
         val opCode = ((msb shl 8) or lsb)
 
+        Logger.d { "--- tick ------------------------------" }
+
+        // Show register state
+        Logger.d { registerHolder.read.toString() }
+
         if (opCode == 0x0000.s) {
             Logger.w { "reached opcode 0x0000, terminating" }
             return false
         }
 
         Logger.d { "decoding 0x${opCode.toString(16)}" }
+
         val ins = decoder.parse(opCode)
 
+        Logger.d { "executing $ins" }
         controlUnit.exec(ins)
+
         return true
     }
 

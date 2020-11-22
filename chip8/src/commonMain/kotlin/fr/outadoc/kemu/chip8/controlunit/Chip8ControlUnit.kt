@@ -31,11 +31,6 @@ class Chip8ControlUnit(
 ) : ControlUnit<Chip8Instruction> {
 
     override fun exec(ins: Chip8Instruction) {
-        Logger.d { "executing $ins" }
-
-        // Show register state
-        Logger.d { registers.read.toString() }
-
         when (ins) {
             Chip8Instruction.cls -> {
                 display.clear()
