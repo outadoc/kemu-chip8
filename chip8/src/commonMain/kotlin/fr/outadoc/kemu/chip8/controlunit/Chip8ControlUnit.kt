@@ -5,8 +5,8 @@ import fr.outadoc.kemu.array.set
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants
-import fr.outadoc.kemu.chip8.exceptions.StackOverflowException
-import fr.outadoc.kemu.chip8.exceptions.StackUnderflowException
+import fr.outadoc.kemu.exceptions.StackOverflowException
+import fr.outadoc.kemu.exceptions.StackUnderflowException
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.processor.Chip8Registers
 import fr.outadoc.kemu.controlunit.ControlUnit

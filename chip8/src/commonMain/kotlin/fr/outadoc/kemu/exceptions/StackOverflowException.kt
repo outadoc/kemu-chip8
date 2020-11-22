@@ -1,3 +1,3 @@
-package fr.outadoc.kemu.chip8.exceptions
+package fr.outadoc.kemu.exceptions
 
 class StackOverflowException : Exception()
