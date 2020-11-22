@@ -24,4 +24,3 @@ interface RegisterAccessor<T : Registers> {
      */
     fun update(advance: Int = 2, block: (T.() -> T)? = null)
 }
-

@@ -2,6 +2,10 @@ package fr.outadoc.kemu.chip8.display
 
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.chip8.Chip8CPU
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
 import javax.swing.JFrame
@@ -35,12 +39,14 @@ class JvmDesktopChip8Window {
             stream.readBytes().toUByteArray2()
         } ?: throw IllegalArgumentException("Could not open resource")
 
-        Chip8CPU(display, keypad).apply {
-            loadProgram(program)
-            start()
-            while (true) {
-                loop()
-                Thread.sleep(200)
+        GlobalScope.launch(Dispatchers.Default) {
+            Chip8CPU(display, keypad).apply {
+                loadProgram(program)
+                start()
+                while (true) {
+                    loop()
+                    delay(200)
+                }
             }
         }
     }
