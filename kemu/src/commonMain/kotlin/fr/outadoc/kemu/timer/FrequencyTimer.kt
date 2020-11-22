@@ -2,7 +2,9 @@ package fr.outadoc.kemu.timer
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 abstract class FrequencyTimer(frequency: Float) : Timer {
 
@@ -15,8 +17,10 @@ abstract class FrequencyTimer(frequency: Float) : Timer {
     }
 
     private suspend fun runTimer() {
-        onTick()
-        delay(delayMillis)
+        while (coroutineContext.isActive) {
+            onTick()
+            delay(delayMillis)
+        }
     }
 
     abstract fun onTick()
