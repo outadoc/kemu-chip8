@@ -38,7 +38,7 @@ class Chip8ControlUnit(
             }
 
             Chip8Instruction.rts -> {
-                registers.update(advance = 0) {
+                registers.update {
                     if (sp == 0.b) {
                         Logger.e { "FATAL: stack underflow" }
                         throw StackUnderflowException()
