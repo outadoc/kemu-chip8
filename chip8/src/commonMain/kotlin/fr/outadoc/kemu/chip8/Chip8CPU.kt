@@ -2,6 +2,7 @@ package fr.outadoc.kemu.chip8
 
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.chip8.controlunit.Chip8ControlUnit
+import fr.outadoc.kemu.chip8.display.Chip8Display
 import fr.outadoc.kemu.chip8.instructionset.Chip8Instruction
 import fr.outadoc.kemu.chip8.instructionset.Chip8InstructionDecoder
 import fr.outadoc.kemu.chip8.memory.Chip8Bus
@@ -12,7 +13,6 @@ import fr.outadoc.kemu.chip8.timers.Chip8DelayTimer
 import fr.outadoc.kemu.chip8.timers.Chip8SoundTimer
 import fr.outadoc.kemu.controlunit.ControlUnit
 import fr.outadoc.kemu.devices.CPU
-import fr.outadoc.kemu.display.Display
 import fr.outadoc.kemu.display.Keypad
 import fr.outadoc.kemu.logging.Logger
 import fr.outadoc.kemu.memory.Bus
@@ -22,10 +22,11 @@ import fr.outadoc.kemu.s
 import fr.outadoc.kemu.shl
 import fr.outadoc.kemu.timer.Timer
 
-class Chip8CPU(display: Display, keypad: Keypad) : CPU {
+class Chip8CPU(keypad: Keypad) : CPU {
 
     private val registerHolder = Chip8RegisterHolder()
 
+    val display = Chip8Display()
     private val random: RandomGenerator = DefaultRandomGenerator()
 
     private val memoryBus: Bus<UShort> = Chip8Bus(

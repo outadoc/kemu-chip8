@@ -17,6 +17,6 @@ fun main() {
     }
 
     SwingUtilities.invokeLater {
-        JvmDesktopChip8Window().start()
+        JvmDesktopChip8Window().show()
     }
 }

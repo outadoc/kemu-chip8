@@ -6,6 +6,7 @@ import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.awt.Color
@@ -14,11 +15,13 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JComponent
 
-class Chip8DisplayMonitor(private val display: Chip8Display) : JComponent() {
+class Chip8DisplayMonitor : JComponent() {
 
     private val scaleFactor = 10
 
-    private var frameBuffer: UByteArray2? = null
+    private var latestFrame: UByteArray2? = null
+
+    private var job: Job? = null
 
     init {
         background = Color.BLACK
@@ -27,10 +30,13 @@ class Chip8DisplayMonitor(private val display: Chip8Display) : JComponent() {
             (DISPLAY_WIDTH * scaleFactor),
             (DISPLAY_HEIGHT * scaleFactor)
         )
+    }
 
-        GlobalScope.launch(Dispatchers.Main) {
+    fun attachToDisplay(display: Chip8Display) {
+        job?.cancel()
+        job = GlobalScope.launch(Dispatchers.Main) {
             display.frameBufferFlow.collect { fb ->
-                frameBuffer = fb.copyOf()
+                latestFrame = fb.copyOf()
                 repaint()
             }
         }
@@ -39,7 +45,7 @@ class Chip8DisplayMonitor(private val display: Chip8Display) : JComponent() {
     override fun paintComponent(g: Graphics?) {
         if (g !is Graphics2D) return
 
-        frameBuffer?.forEachIndexed { i, pixel ->
+        latestFrame?.forEachIndexed { i, pixel ->
             // Byte i in buffer is at screen position (i mod width, i / width)
             val x = i % DISPLAY_WIDTH
             val y = i / DISPLAY_WIDTH
@@ -53,7 +59,7 @@ class Chip8DisplayMonitor(private val display: Chip8Display) : JComponent() {
     }
 
     private fun displayCheckerBoard() {
-        val frameBuffer = frameBuffer ?: return
+        val frameBuffer = latestFrame ?: return
         frameBuffer.indices.forEach { i ->
             val x = i % DISPLAY_WIDTH
             val y = i / DISPLAY_WIDTH
