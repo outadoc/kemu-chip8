@@ -48,17 +48,23 @@ class Chip8CPU(display: Display, keypad: Keypad) : CPU {
         timers.forEach { timer -> timer.start() }
     }
 
-    override fun loop() {
+    override fun loop(): Boolean {
         val pc = registerHolder.read.pc
 
         val msb = memoryBus.read(pc).toUShort()
         val lsb = memoryBus.read((pc + 1.s).toUShort()).toUShort()
         val opCode = ((msb shl 8) or lsb)
 
+        if (opCode == 0x0000.s) {
+            Logger.w { "reached opcode 0x0000, terminating" }
+            return false
+        }
+
         Logger.d { "decoding 0x${opCode.toString(16)}" }
         val ins = decoder.parse(opCode)
 
         controlUnit.exec(ins)
+        return true
     }
 
     override fun loadProgram(program: UByteArray2) {

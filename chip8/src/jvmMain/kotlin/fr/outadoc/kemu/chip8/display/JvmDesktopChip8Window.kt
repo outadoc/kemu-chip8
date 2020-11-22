@@ -43,8 +43,7 @@ class JvmDesktopChip8Window {
             Chip8CPU(display, keypad).apply {
                 loadProgram(program)
                 start()
-                while (true) {
-                    loop()
+                while (loop()) {
                     delay(200)
                 }
             }
