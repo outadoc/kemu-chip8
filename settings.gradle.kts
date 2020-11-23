@@ -1,8 +1,6 @@
-rootProject.name = "CHIP-8"
-
-include(":chip8")
+include(":lib-chip8")
+include(":lib-kemu")
 include(":app-chip8-desktop")
-include(":kemu")
 
 pluginManagement {
     repositories {

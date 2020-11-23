@@ -20,7 +20,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":kemu"))
+                api(project(":lib-kemu"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
             }
         }
