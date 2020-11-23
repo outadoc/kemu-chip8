@@ -18,9 +18,16 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        all {
             dependencies {
                 api(project(":lib-kemu"))
+            }
+
+            languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
+        }
+
+        val commonMain by getting {
+            dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
             }
         }
@@ -48,10 +55,6 @@ kotlin {
             tasks.withType<Test> {
                 useJUnitPlatform()
             }
-        }
-
-        all {
-            languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
         }
     }
 }

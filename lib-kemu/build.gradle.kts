@@ -9,25 +9,12 @@ kotlin {
                 jvmTarget = "1.8"
             }
         }
-
-        val test by compilations.getting {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
-            }
-        }
-
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
             }
         }
 

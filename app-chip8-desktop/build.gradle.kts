@@ -1,28 +1,21 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("multiplatform") version "1.4.20"
+    kotlin("jvm") version "1.4.20"
+    application
 }
 
-kotlin {
-    jvm {
-        val main by compilations.getting {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+}
 
-    sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(project(":lib-chip8"))
+application {
+    mainClassName = "fr.outadoc.kemu.chip8.desktop.EntryPointKt"
+}
 
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.4.1")
-            }
-        }
+dependencies {
+    implementation(project(":lib-chip8"))
 
-        all {
-            languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
-        }
-    }
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.4.1")
 }
