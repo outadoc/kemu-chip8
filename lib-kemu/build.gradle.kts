@@ -11,7 +11,9 @@ kotlin {
         }
     }
 
-    js()
+    js {
+        browser()
+    }
 
     sourceSets {
         val commonMain by getting {
