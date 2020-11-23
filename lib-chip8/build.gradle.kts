@@ -17,6 +17,8 @@ kotlin {
         }
     }
 
+    js()
+
     sourceSets {
         all {
             dependencies {

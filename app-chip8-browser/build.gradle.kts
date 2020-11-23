@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
+    implementation(project(":lib-chip8"))
 }
 
 kotlin {
