@@ -18,8 +18,6 @@ class Chip8Runner(
     var speed = Speed.REALTIME
 
     private var programJob: Job? = null
-    private var timersJob: Job? = null
-
     private var runningProgram: UByteArray2? = null
 
     fun execute(program: UByteArray2) {
@@ -30,12 +28,12 @@ class Chip8Runner(
         }
     }
 
-    private suspend fun runProgram(program: UByteArray2) {
+    private suspend fun runProgram(program: UByteArray2) = coroutineScope {
         Chip8CPU(keypad).apply {
             displayDriver.attach(display)
             loadProgram(program)
 
-            timersJob = GlobalScope.launch(Dispatchers.Default) {
+            launch {
                 initializeTimers()
             }
 
@@ -54,8 +52,6 @@ class Chip8Runner(
 
     fun stop() {
         displayDriver.detach()
-        timersJob?.cancel()
-        timersJob = null
         programJob?.cancel()
         programJob = null
     }
