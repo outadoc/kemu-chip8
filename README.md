@@ -18,6 +18,8 @@ Platforms
 
 This is a desktop, cross-platform, Swing-based CHIP-8 emulator.
 
+![](screenshots/macos1.png)
+
 ```shell
 ./gradlew app-chip8-desktop:run
 ```

@@ -22,7 +22,7 @@ jobs:
 
       - name: JVM build
         run: ./gradlew app-chip8-desktop:distZip
-  
+
       - uses: actions/upload-artifact@v2
         with:
           name: app-chip8-desktop
