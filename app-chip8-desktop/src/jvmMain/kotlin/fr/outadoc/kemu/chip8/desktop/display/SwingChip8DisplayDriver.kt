@@ -1,9 +1,10 @@
-package fr.outadoc.kemu.chip8.display
+package fr.outadoc.kemu.chip8.desktop.display
 
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
+import fr.outadoc.kemu.chip8.display.Chip8Display
 import fr.outadoc.kemu.display.DisplayDriver
 import fr.outadoc.kemu.theme.Theme
 import fr.outadoc.kemu.theme.toColor

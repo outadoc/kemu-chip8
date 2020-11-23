@@ -4,7 +4,7 @@ import fr.outadoc.kemu.display.Keypad
 import java.awt.KeyEventDispatcher
 import java.awt.event.KeyEvent
 
-actual class AwtChip8Keypad : Keypad, KeyEventDispatcher {
+actual class Chip8Keypad : Keypad, KeyEventDispatcher {
 
     private val alphabet = (('0'..'9').zip(0x0..0x9) + ('a'..'f').zip(0xa..0xf))
         .map { (a, b) -> a to b.toUByte() }

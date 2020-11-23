@@ -1,6 +1,6 @@
-package fr.outadoc.kemu.chip8
+package fr.outadoc.kemu.chip8.desktop
 
-import fr.outadoc.kemu.chip8.display.SwingChip8Window
+import fr.outadoc.kemu.chip8.desktop.display.SwingChip8Window
 import javax.swing.SwingUtilities
 import javax.swing.UIManager
 

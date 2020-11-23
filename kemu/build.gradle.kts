@@ -1,15 +1,5 @@
 plugins {
-    kotlin("multiplatform")
-}
-
-repositories {
-    gradlePluginPortal()
-    google()
-    jcenter()
-    mavenCentral()
-    maven {
-        url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
-    }
+    kotlin("multiplatform") version "1.4.20"
 }
 
 kotlin {

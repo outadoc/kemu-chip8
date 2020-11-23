@@ -1,15 +1,5 @@
 plugins {
-    kotlin("multiplatform")
-}
-
-repositories {
-    gradlePluginPortal()
-    google()
-    jcenter()
-    mavenCentral()
-    maven {
-        url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
-    }
+    kotlin("multiplatform") version "1.4.20"
 }
 
 kotlin {
@@ -30,14 +20,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":kemu"))
+                api(project(":kemu"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation("androidx.core:core-ktx:1.3.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.4.1")
             }
