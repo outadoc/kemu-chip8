@@ -23,7 +23,7 @@ class CanvasChip8DisplayDriver(private val context: CanvasRenderingContext2D) : 
 
     private val offScreenContext: CanvasRenderingContext2D = createCanvasContext()
 
-    private val theme = Theme.WHITE_ON_BLACK
+    var theme = Theme.WHITE_ON_BLACK
 
     init {
         with(context.canvas) {
