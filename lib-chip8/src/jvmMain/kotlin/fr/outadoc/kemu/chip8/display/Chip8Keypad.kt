@@ -1,6 +1,8 @@
 package fr.outadoc.kemu.chip8.display
 
 import fr.outadoc.kemu.display.Keypad
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import java.awt.KeyEventDispatcher
 import java.awt.event.KeyEvent
 
@@ -17,11 +19,12 @@ actual class Chip8Keypad : Keypad, KeyEventDispatcher {
     }
 
     override fun waitForKeyPress(): UByte {
-        while (pressedKeys.isEmpty()) {
-            Thread.sleep(100)
+        runBlocking {
+            while (pressedKeys.isEmpty()) {
+                delay(100)
+            }
         }
 
-        // Janky, we should do that stuff on another thread :(
         return pressedKeys.first()
     }
 
