@@ -16,25 +16,21 @@ import kotlinx.coroutines.flow.collect
 
 class CanvasChip8DisplayDriver(private val context: CanvasRenderingContext2D) : DisplayDriver<Chip8Display> {
 
-    private val scaleFactor = 10.0
-
     private var currentFrame: UByteArray2? = null
     private var job: Job? = null
 
     private val offScreenContext: CanvasRenderingContext2D = createCanvasContext()
 
-    var theme = Theme.WHITE_ON_BLACK
+    var theme = Theme.values().first()
+        set(value) {
+            field = value
+            drawFrame()
+        }
 
     init {
         with(context.canvas) {
             width = DISPLAY_WIDTH
             height = DISPLAY_HEIGHT
-
-            with(style) {
-                transformOrigin = "0 0"
-                transform = "scale($scaleFactor)"
-                imageRendering = "crisp-edges"
-            }
         }
 
         with(offScreenContext.canvas) {
