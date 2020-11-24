@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-jvm:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +27,17 @@ jobs:
         with:
           name: app-chip8-desktop
           path: app-chip8-desktop/build/distributions/app-chip8-desktop.zip
+
+  build-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: JS build
+        run: ./gradlew app-chip8-browser:browserProductionWebpack
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: app-chip8-browser
+          path: app-chip8-browser/build/distributions
