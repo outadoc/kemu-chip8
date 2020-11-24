@@ -17,6 +17,10 @@ kotlin {
         }
     }
 
+    js {
+        browser()
+    }
+
     sourceSets {
         all {
             dependencies {

@@ -11,6 +11,10 @@ kotlin {
         }
     }
 
+    js {
+        browser()
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {

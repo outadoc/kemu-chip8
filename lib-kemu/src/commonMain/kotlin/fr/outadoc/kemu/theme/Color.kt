@@ -1,6 +1,12 @@
 package fr.outadoc.kemu.theme
 
-data class Color(val r: Int, val g: Int, val b: Int)
+data class Color(val r: Int, val g: Int, val b: Int) {
+    override fun toString(): String {
+        return "#${r.toString(16).padStart(2, '0')}" +
+                g.toString(16).padStart(2, '0') +
+                b.toString(16).padStart(2, '0')
+    }
+}
 
 fun String.toColor(): Color {
     val sanitized = replace("#", "").toLowerCase()
