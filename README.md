@@ -23,3 +23,13 @@ This is a desktop, cross-platform, Swing-based CHIP-8 emulator.
 ```shell
 ./gradlew app-chip8-desktop:run
 ```
+
+### JavaScript
+
+This is a web-based version of the CHIP-8 emulator.
+
+![](screenshots/web1.png)
+
+```shell
+./gradlew app-chip8-browser:browserProductionRun
+```
