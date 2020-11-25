@@ -70,6 +70,11 @@ class Chip8CPU(keypad: Keypad) : CPU {
 
         val ins = decoder.parse(opCode)
 
+        if (ins == Chip8Instruction.jmp(nnn = pc)) {
+            Logger.w { "detected jump to current addess, terminating" }
+            return false
+        }
+
         Logger.d { "executing $ins" }
         controlUnit.exec(ins)
 
