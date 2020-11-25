@@ -9,7 +9,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
-actual class InstructionDecoderTests {
+class InstructionDecoderTests {
 
     lateinit var decoder: Chip8InstructionDecoder
 
