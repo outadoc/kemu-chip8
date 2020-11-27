@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js") version "1.4.20"
+    kotlin("js")
 }
 
 group = "fr.outadoc.kemu.chip8"
