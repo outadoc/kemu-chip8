@@ -54,12 +54,12 @@ kotlin {
 
         val jvmTest by getting {
             dependencies {
-                implementation(kotlin("test-junit5"))
-                implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+                implementation(kotlin("test-junit"))
             }
-
-            tasks.withType<Test> {
-                useJUnitPlatform()
+        }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
             }
         }
 
