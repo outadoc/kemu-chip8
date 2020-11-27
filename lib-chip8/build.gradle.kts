@@ -21,17 +21,18 @@ kotlin {
         browser()
     }
 
-    sourceSets {
-        all {
-            dependencies {
-                api(project(":lib-kemu"))
+    ios {
+        binaries {
+            framework {
+                baseName = "lib-chip8"
             }
-
-            languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
         }
+    }
 
+    sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":lib-kemu"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
             }
         }
@@ -58,6 +59,10 @@ kotlin {
             tasks.withType<Test> {
                 useJUnitPlatform()
             }
+        }
+
+        all {
+            languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
         }
     }
 }

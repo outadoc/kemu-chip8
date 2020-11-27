@@ -15,6 +15,14 @@ kotlin {
         browser()
     }
 
+    ios {
+        binaries {
+            framework {
+                baseName = "lib-kemu"
+            }
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
