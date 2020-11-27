@@ -21,4 +21,10 @@ allprojects {
             url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
         }
     }
+
+    tasks.withType<Test> {
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
+    }
 }
