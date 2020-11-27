@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: JVM tests
-        run: ./gradlew jvmTest
+        run: ./gradlew lib-chip8:jvmTest
 
       - name: JVM build
         run: ./gradlew app-chip8-desktop:distZip
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: JS tests
-        run: ./gradlew jsTest
+        run: ./gradlew lib-chip8:jsTest
 
       - name: JS build
         run: ./gradlew app-chip8-browser:browserProductionWebpack
