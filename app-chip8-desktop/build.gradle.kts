@@ -15,7 +15,4 @@ application {
 
 dependencies {
     implementation(project(":lib-chip8"))
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.4.1")
 }

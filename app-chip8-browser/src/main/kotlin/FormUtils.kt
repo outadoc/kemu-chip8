@@ -1,13 +1,8 @@
 
 import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.UByteArray2
-import fr.outadoc.kemu.chip8.browser.display.CanvasChip8DisplayDriver
 import kotlinx.browser.document
-import fr.outadoc.kemu.chip8.Chip8Runner
-import fr.outadoc.kemu.chip8.browser.display.createCanvasContext
-import fr.outadoc.kemu.chip8.display.Chip8Keypad
 import fr.outadoc.kemu.theme.Theme
-import kotlinx.browser.window
 import org.khronos.webgl.ArrayBuffer
 import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.get

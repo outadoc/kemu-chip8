@@ -25,6 +25,8 @@ kotlin {
         homepage = "https://github.com/outadoc/kemu-chip8"
 
         ios.deploymentTarget = "14.0"
+
+        podfile = project.file("../app-chip8-ios/Podfile")
     }
 
     sourceSets {

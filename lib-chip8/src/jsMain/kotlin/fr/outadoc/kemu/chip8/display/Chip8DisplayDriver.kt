@@ -1,4 +1,4 @@
-package fr.outadoc.kemu.chip8.browser.display
+package fr.outadoc.kemu.chip8.display
 
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.b
@@ -14,7 +14,7 @@ import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
 import fr.outadoc.kemu.theme.Theme
 import kotlinx.coroutines.flow.collect
 
-class CanvasChip8DisplayDriver(private val context: CanvasRenderingContext2D) : DisplayDriver<Chip8Display> {
+actual class Chip8DisplayDriver(private val context: CanvasRenderingContext2D) : DisplayDriver<Chip8Display> {
 
     private var currentFrame: UByteArray2? = null
     private var job: Job? = null

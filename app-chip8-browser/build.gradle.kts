@@ -8,7 +8,6 @@ repositories {
 
 dependencies {
     implementation(project(":lib-chip8"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.4.1")
 }
 
 kotlin {

@@ -1,9 +1,10 @@
-package fr.outadoc.kemu.chip8.desktop.display
+package fr.outadoc.kemu.chip8.desktop
 
 import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.chip8.Chip8Runner
 import fr.outadoc.kemu.chip8.display.Chip8Keypad
+import fr.outadoc.kemu.chip8.display.Chip8DisplayDriver
 import fr.outadoc.kemu.theme.Theme
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
@@ -20,7 +21,7 @@ class SwingChip8Window {
     }
 
     private val keypad = Chip8Keypad()
-    private val displayDriver = SwingChip8DisplayDriver()
+    private val displayDriver = Chip8DisplayDriver()
 
     private val runner = Chip8Runner(keypad, displayDriver)
 

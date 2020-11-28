@@ -1,4 +1,4 @@
-package fr.outadoc.kemu.chip8.browser.display
+package fr.outadoc.kemu.chip8.display
 
 import kotlinx.browser.document
 import org.w3c.dom.CanvasRenderingContext2D
