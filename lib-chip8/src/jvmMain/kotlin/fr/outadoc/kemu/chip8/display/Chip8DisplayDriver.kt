@@ -1,10 +1,9 @@
-package fr.outadoc.kemu.chip8.desktop.display
+package fr.outadoc.kemu.chip8.display
 
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
-import fr.outadoc.kemu.chip8.display.Chip8Display
 import fr.outadoc.kemu.display.DisplayDriver
 import fr.outadoc.kemu.theme.Theme
 import fr.outadoc.kemu.theme.toColor
@@ -18,7 +17,7 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JComponent
 
-class SwingChip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
+actual class Chip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
 
     private val scaleFactor = 10
 
