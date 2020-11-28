@@ -10,9 +10,6 @@ buildscript {
     }
 }
 
-group = "fr.outadoc.kemu.chip8"
-version = "1.0-SNAPSHOT"
-
 allprojects {
     repositories {
         jcenter()
