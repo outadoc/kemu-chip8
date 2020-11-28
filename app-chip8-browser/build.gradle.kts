@@ -2,9 +2,6 @@ plugins {
     kotlin("js")
 }
 
-group = "fr.outadoc.kemu.chip8"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
