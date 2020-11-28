@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
 
                 
 
-                
+    spec.dependency 'lib_kemu', '1.0'
 
     spec.pod_target_xcconfig = {
         'KOTLIN_TARGET[sdk=iphonesimulator*]' => 'ios_x64',

@@ -1,0 +1,10 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '14.0'
+
+target 'app-chip8-ios (iOS)' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for app-chip8-ios (iOS)
+  pod 'lib_chip8', :path => '../lib-chip8'
+end

@@ -23,6 +23,8 @@ kotlin {
     cocoapods {
         summary = "kemu common library"
         homepage = "https://github.com/outadoc/kemu-chip8"
+
+        ios.deploymentTarget = "14.0"
     }
 
     sourceSets {
