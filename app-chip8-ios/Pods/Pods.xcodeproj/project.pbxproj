@@ -9,97 +9,97 @@
 /* Begin PBXAggregateTarget section */
 		10C50647A85E9B496D5D2A406D5B41A4 /* lib_chip8 */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 4B78E603F7A9F6898394962AEBFAF3BD /* Build configuration list for PBXAggregateTarget "lib_chip8" */;
+			buildConfigurationList = 542DF60CDC3C8D506F36E33F6C9078DB /* Build configuration list for PBXAggregateTarget "lib_chip8" */;
 			buildPhases = (
-				259EAF0A99EDF9E9FDF71E9C3F23E88A /* [CP-User] Build lib_chip8 */,
+				4EEF67AFF565F05ED0395831DE6A97C7 /* [CP-User] Build lib_chip8 */,
+			);
+			dependencies = (
+				63A742F3730779243A060B24E1EB132D /* PBXTargetDependency */,
+			);
+			name = lib_chip8;
+		};
+		65A26A81354B28DBA1C59DA4E13635B3 /* lib_kemu */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 4E7BD072124EDAB06D6921D8C98F6E82 /* Build configuration list for PBXAggregateTarget "lib_kemu" */;
+			buildPhases = (
+				8C9B7A775285C9EB9D1C02B730F97A5B /* [CP-User] Build lib_kemu */,
 			);
 			dependencies = (
 			);
-			name = lib_chip8;
+			name = lib_kemu;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		390F4B116DC8CE32B3257E383C16B573 /* Pods-app-chip8-ios (iOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 959542B9B7DBA2B2B4AC6681EFF9C537 /* Pods-app-chip8-ios (iOS)-dummy.m */; };
-		A2EE91F6C0EFCFCACF167A070B3CFE67 /* Pods-app-chip8-ios (iOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA1B90DDC6E5674BB673B4E7BDAFE22 /* Pods-app-chip8-ios (iOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B21E1270E755F946A8D9FA5E664F2F21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		2BC5D2C1AE19D0B208755C0806FF5E43 /* Pods-app-chip8-ios (iOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA1B90DDC6E5674BB673B4E7BDAFE22 /* Pods-app-chip8-ios (iOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63C2B6A3A229C76A8232744730F772CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		E6EE57750B583C288E064E2F96E9D919 /* Pods-app-chip8-ios (iOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 959542B9B7DBA2B2B4AC6681EFF9C537 /* Pods-app-chip8-ios (iOS)-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D8C0A9530EC7D2EC634A7DB43D9A013D /* PBXContainerItemProxy */ = {
+		6A24AFF3A9919B6F44F8816C8A2002D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65A26A81354B28DBA1C59DA4E13635B3;
+			remoteInfo = lib_kemu;
+		};
+		BE05FB361C9AE81794C3F75E11B955DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 10C50647A85E9B496D5D2A406D5B41A4;
 			remoteInfo = lib_chip8;
 		};
+		C7B48E3D4E5C9427C0AC9194C9B3D365 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65A26A81354B28DBA1C59DA4E13635B3;
+			remoteInfo = lib_kemu;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0AF9828A7115A4629E0360A2BEDB4A48 /* lib_chip8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = lib_chip8.debug.xcconfig; sourceTree = "<group>"; };
 		123C03D28A81260E92CF150970AD96C5 /* Pods-app-chip8-ios (iOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-app-chip8-ios (iOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1DAA32D39B36079FB747C31994987320 /* Pods-app-chip8-ios (iOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-app-chip8-ios (iOS).modulemap"; sourceTree = "<group>"; };
+		25027F2E4088B93A2733C30705F96CCA /* lib_chip8.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lib_chip8.framework; path = build/cocoapods/framework/lib_chip8.framework; sourceTree = "<group>"; };
 		2537665B7CAF055DD38F3D6D0AB48D9B /* Pods-app-chip8-ios (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-app-chip8-ios (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		3DA1B90DDC6E5674BB673B4E7BDAFE22 /* Pods-app-chip8-ios (iOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-app-chip8-ios (iOS)-umbrella.h"; sourceTree = "<group>"; };
-		4ACC2E15F506B8007206488C50283E7D /* lib_chip8.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = lib_chip8.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		52D51B740D24527272A95CDD2DE6F24C /* Pods-app-chip8-ios (iOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-app-chip8-ios (iOS)-acknowledgements.plist"; sourceTree = "<group>"; };
+		54F7938D8F1D9338EB3F3B82EE4C87A1 /* lib_kemu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lib_kemu.framework; path = build/cocoapods/framework/lib_kemu.framework; sourceTree = "<group>"; };
 		622DCCD2A4CB819CDA8FC83F358D6FDB /* Pods-app-chip8-ios (iOS)-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-app-chip8-ios (iOS)-Info.plist"; sourceTree = "<group>"; };
+		65F25384665872E3579968C2FE71E228 /* lib_kemu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = lib_kemu.release.xcconfig; sourceTree = "<group>"; };
+		70111E7E8D03E27A8EBAC0D5A8DE2821 /* lib_chip8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = lib_chip8.debug.xcconfig; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		75AF2490FC78C1D15DD73D9C1A70C607 /* lib_chip8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = lib_chip8.release.xcconfig; sourceTree = "<group>"; };
 		959542B9B7DBA2B2B4AC6681EFF9C537 /* Pods-app-chip8-ios (iOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-app-chip8-ios (iOS)-dummy.m"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B22994437AE23C9973A9AEA7B81375E0 /* lib_kemu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = lib_kemu.debug.xcconfig; sourceTree = "<group>"; };
+		D13AA734C69B0070608722B881F7E37A /* lib_kemu.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = lib_kemu.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D6AD32A05B07A31F55A6EAA80648F27F /* Pods-app-chip8-ios (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-app-chip8-ios (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		F9573525A1363790694870A960F5B8A2 /* lib_chip8.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lib_chip8.framework; path = build/cocoapods/framework/lib_chip8.framework; sourceTree = "<group>"; };
+		E1286377F55E11F3FCB70046B7136E35 /* lib_chip8.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = lib_chip8.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F820C122DCA246A9ECDB80C9799BF40F /* lib_chip8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = lib_chip8.release.xcconfig; sourceTree = "<group>"; };
 		FC509CC73E7919D79BCF639C7835F375 /* Pods_app_chip8_ios__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_app_chip8_ios__iOS_.framework; path = "Pods-app-chip8-ios (iOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DB5050FF7FBB17C28F8D7456E2A4DDFF /* Frameworks */ = {
+		1E5E8A87620B4368EEDE74083F1C986C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B21E1270E755F946A8D9FA5E664F2F21 /* Foundation.framework in Frameworks */,
+				63C2B6A3A229C76A8232744730F772CB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B5AD1DE2C62E0565EF264E52E4A64EF /* lib_chip8 */ = {
-			isa = PBXGroup;
-			children = (
-				69C6C5B0CFE4EC58C767E554305F804A /* Frameworks */,
-				723CC32E67CAB2A9912C4EA7AC57DD78 /* Pod */,
-				4B3972FED0F8D263A601CB9512F9E226 /* Support Files */,
-			);
-			name = lib_chip8;
-			path = "../../lib-chip8";
-			sourceTree = "<group>";
-		};
-		323BB98C9C49AAD4393397DE914C9FD6 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1B5AD1DE2C62E0565EF264E52E4A64EF /* lib_chip8 */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		32FF4B0A5E63CEC4B713A07FA7C53FCC /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				FC509CC73E7919D79BCF639C7835F375 /* Pods_app_chip8_ios__iOS_.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4B3972FED0F8D263A601CB9512F9E226 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0AF9828A7115A4629E0360A2BEDB4A48 /* lib_chip8.debug.xcconfig */,
-				75AF2490FC78C1D15DD73D9C1A70C607 /* lib_chip8.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../app-chip8-ios/Pods/Target Support Files/lib_chip8";
 			sourceTree = "<group>";
 		};
 		4D094EA7AA3A0A80916038828795C1C3 /* Pods-app-chip8-ios (iOS) */ = {
@@ -126,27 +126,67 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		69C6C5B0CFE4EC58C767E554305F804A /* Frameworks */ = {
+		7B2EDECC85DD5F2FDAD98823B45378BE /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F9573525A1363790694870A960F5B8A2 /* lib_chip8.framework */,
+				70111E7E8D03E27A8EBAC0D5A8DE2821 /* lib_chip8.debug.xcconfig */,
+				F820C122DCA246A9ECDB80C9799BF40F /* lib_chip8.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../app-chip8-ios/Pods/Target Support Files/lib_chip8";
+			sourceTree = "<group>";
+		};
+		811379ACECBD09F9E683D0B98E27BCED /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B22994437AE23C9973A9AEA7B81375E0 /* lib_kemu.debug.xcconfig */,
+				65F25384665872E3579968C2FE71E228 /* lib_kemu.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../app-chip8-ios/Pods/Target Support Files/lib_kemu";
+			sourceTree = "<group>";
+		};
+		957086115FBAC5FB5D8D2C238590033D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54F7938D8F1D9338EB3F3B82EE4C87A1 /* lib_kemu.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		723CC32E67CAB2A9912C4EA7AC57DD78 /* Pod */ = {
+		A9B0D98345E19A97472778EA1AB63532 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC2E15F506B8007206488C50283E7D /* lib_chip8.podspec */,
+				DF49DE11436314E510BEAC71E12184CC /* lib_chip8 */,
+				B8F17D64133708CA44ACD8D88AE9F4BB /* lib_kemu */,
 			);
-			name = Pod;
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		B8F17D64133708CA44ACD8D88AE9F4BB /* lib_kemu */ = {
+			isa = PBXGroup;
+			children = (
+				957086115FBAC5FB5D8D2C238590033D /* Frameworks */,
+				F58E5DCAA31989137010ACC73249BA9B /* Pod */,
+				811379ACECBD09F9E683D0B98E27BCED /* Support Files */,
+			);
+			name = lib_kemu;
+			path = "../../lib-kemu";
+			sourceTree = "<group>";
+		};
+		C6923FAC540361A65E5915AA64DACC6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				25027F2E4088B93A2733C30705F96CCA /* lib_chip8.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				323BB98C9C49AAD4393397DE914C9FD6 /* Development Pods */,
+				A9B0D98345E19A97472778EA1AB63532 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				32FF4B0A5E63CEC4B713A07FA7C53FCC /* Products */,
 				FFE753FED59F347D17D2FAD4591421FA /* Targets Support Files */,
@@ -161,6 +201,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DF49DE11436314E510BEAC71E12184CC /* lib_chip8 */ = {
+			isa = PBXGroup;
+			children = (
+				C6923FAC540361A65E5915AA64DACC6C /* Frameworks */,
+				F6F2D49E2EA5C419707255F3EA4B0035 /* Pod */,
+				7B2EDECC85DD5F2FDAD98823B45378BE /* Support Files */,
+			);
+			name = lib_chip8;
+			path = "../../lib-chip8";
+			sourceTree = "<group>";
+		};
+		F58E5DCAA31989137010ACC73249BA9B /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				D13AA734C69B0070608722B881F7E37A /* lib_kemu.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		F6F2D49E2EA5C419707255F3EA4B0035 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				E1286377F55E11F3FCB70046B7136E35 /* lib_chip8.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		FFE753FED59F347D17D2FAD4591421FA /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,11 +239,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		E170E38125E059C56A6803A63F3AF82B /* Headers */ = {
+		F3D66B0724C42404FAFE56627BFB5D1C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2EE91F6C0EFCFCACF167A070B3CFE67 /* Pods-app-chip8-ios (iOS)-umbrella.h in Headers */,
+				2BC5D2C1AE19D0B208755C0806FF5E43 /* Pods-app-chip8-ios (iOS)-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,17 +252,18 @@
 /* Begin PBXNativeTarget section */
 		5133366873B69A79FCBA9CE98ED1DDB8 /* Pods-app-chip8-ios (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8E6D73CB2BEBB2FCB460E0CAB5D6834B /* Build configuration list for PBXNativeTarget "Pods-app-chip8-ios (iOS)" */;
+			buildConfigurationList = 22A7D410A334E9A1ACBBDF0C3EB4669F /* Build configuration list for PBXNativeTarget "Pods-app-chip8-ios (iOS)" */;
 			buildPhases = (
-				E170E38125E059C56A6803A63F3AF82B /* Headers */,
-				CFA50734FA87C73CEED8583F1022F1B2 /* Sources */,
-				DB5050FF7FBB17C28F8D7456E2A4DDFF /* Frameworks */,
-				95388B32340C22A82111A2BBA9FB3CDC /* Resources */,
+				F3D66B0724C42404FAFE56627BFB5D1C /* Headers */,
+				C510BAF94C6FE7850DC98A47958F7B35 /* Sources */,
+				1E5E8A87620B4368EEDE74083F1C986C /* Frameworks */,
+				2AA5C23824DD2B6A20748651BAA35584 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				49003E5B9B9DE7356C98230E5B90F0CA /* PBXTargetDependency */,
+				1E9AB4A68637C8F7E0A981A02AC90130 /* PBXTargetDependency */,
+				6AC1598F6BA329A64D982E088E8E2434 /* PBXTargetDependency */,
 			);
 			name = "Pods-app-chip8-ios (iOS)";
 			productName = "Pods-app-chip8-ios (iOS)";
@@ -225,13 +293,14 @@
 			projectRoot = "";
 			targets = (
 				10C50647A85E9B496D5D2A406D5B41A4 /* lib_chip8 */,
+				65A26A81354B28DBA1C59DA4E13635B3 /* lib_kemu */,
 				5133366873B69A79FCBA9CE98ED1DDB8 /* Pods-app-chip8-ios (iOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		95388B32340C22A82111A2BBA9FB3CDC /* Resources */ = {
+		2AA5C23824DD2B6A20748651BAA35584 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -241,7 +310,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		259EAF0A99EDF9E9FDF71E9C3F23E88A /* [CP-User] Build lib_chip8 */ = {
+		4EEF67AFF565F05ED0395831DE6A97C7 /* [CP-User] Build lib_chip8 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,66 +320,66 @@
 			shellPath = /bin/sh;
 			shellScript = "                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" :lib-chip8:syncFramework                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n";
 		};
+		8C9B7A775285C9EB9D1C02B730F97A5B /* [CP-User] Build lib_kemu */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Build lib_kemu";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" :lib-kemu:syncFramework                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CFA50734FA87C73CEED8583F1022F1B2 /* Sources */ = {
+		C510BAF94C6FE7850DC98A47958F7B35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				390F4B116DC8CE32B3257E383C16B573 /* Pods-app-chip8-ios (iOS)-dummy.m in Sources */,
+				E6EE57750B583C288E064E2F96E9D919 /* Pods-app-chip8-ios (iOS)-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		49003E5B9B9DE7356C98230E5B90F0CA /* PBXTargetDependency */ = {
+		1E9AB4A68637C8F7E0A981A02AC90130 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = lib_chip8;
 			target = 10C50647A85E9B496D5D2A406D5B41A4 /* lib_chip8 */;
-			targetProxy = D8C0A9530EC7D2EC634A7DB43D9A013D /* PBXContainerItemProxy */;
+			targetProxy = BE05FB361C9AE81794C3F75E11B955DF /* PBXContainerItemProxy */;
+		};
+		63A742F3730779243A060B24E1EB132D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = lib_kemu;
+			target = 65A26A81354B28DBA1C59DA4E13635B3 /* lib_kemu */;
+			targetProxy = C7B48E3D4E5C9427C0AC9194C9B3D365 /* PBXContainerItemProxy */;
+		};
+		6AC1598F6BA329A64D982E088E8E2434 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = lib_kemu;
+			target = 65A26A81354B28DBA1C59DA4E13635B3 /* lib_kemu */;
+			targetProxy = 6A24AFF3A9919B6F44F8816C8A2002D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0944C8CFBED43A9615D026282B25657C /* Release */ = {
+		317956A4428977958B50103CFBD76DB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2537665B7CAF055DD38F3D6D0AB48D9B /* Pods-app-chip8-ios (iOS).release.xcconfig */;
+			baseConfigurationReference = B22994437AE23C9973A9AEA7B81375E0 /* lib_kemu.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS)-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS).modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		4BC7450F9457737EE3E637BA155B56F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -378,59 +447,6 @@
 			};
 			name = Debug;
 		};
-		4EE90A4CF9DFC3C02AD82468632BD7DD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AF9828A7115A4629E0360A2BEDB4A48 /* lib_chip8.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		68FB68F89D159D226050D26C48815813 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6AD32A05B07A31F55A6EAA80648F27F /* Pods-app-chip8-ios (iOS).debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS)-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS).modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		8B5A46FF8D3C1289CDEE3BAFACABCD2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -493,9 +509,9 @@
 			};
 			name = Release;
 		};
-		D45902954D172A74B83D6B91D4AB7FD7 /* Release */ = {
+		8F17EB59B6AFD252233DE2E8024FC8B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75AF2490FC78C1D15DD73D9C1A70C607 /* lib_chip8.release.xcconfig */;
+			baseConfigurationReference = 65F25384665872E3579968C2FE71E228 /* lib_kemu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -510,9 +526,126 @@
 			};
 			name = Release;
 		};
+		95929A80584270076B06A866D72EEA9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F820C122DCA246A9ECDB80C9799BF40F /* lib_chip8.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B89CA82FAD2FEC8FE91E2DE926C6505F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70111E7E8D03E27A8EBAC0D5A8DE2821 /* lib_chip8.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF4269D3072CB2C93C66DAF2E903AC9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2537665B7CAF055DD38F3D6D0AB48D9B /* Pods-app-chip8-ios (iOS).release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS)-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DD304E17E149398F3277663366775E21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AD32A05B07A31F55A6EAA80648F27F /* Pods-app-chip8-ios (iOS).debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS)-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-app-chip8-ios (iOS)/Pods-app-chip8-ios (iOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		22A7D410A334E9A1ACBBDF0C3EB4669F /* Build configuration list for PBXNativeTarget "Pods-app-chip8-ios (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD304E17E149398F3277663366775E21 /* Debug */,
+				CF4269D3072CB2C93C66DAF2E903AC9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -522,20 +655,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B78E603F7A9F6898394962AEBFAF3BD /* Build configuration list for PBXAggregateTarget "lib_chip8" */ = {
+		4E7BD072124EDAB06D6921D8C98F6E82 /* Build configuration list for PBXAggregateTarget "lib_kemu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4EE90A4CF9DFC3C02AD82468632BD7DD /* Debug */,
-				D45902954D172A74B83D6B91D4AB7FD7 /* Release */,
+				317956A4428977958B50103CFBD76DB6 /* Debug */,
+				8F17EB59B6AFD252233DE2E8024FC8B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8E6D73CB2BEBB2FCB460E0CAB5D6834B /* Build configuration list for PBXNativeTarget "Pods-app-chip8-ios (iOS)" */ = {
+		542DF60CDC3C8D506F36E33F6C9078DB /* Build configuration list for PBXAggregateTarget "lib_chip8" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				68FB68F89D159D226050D26C48815813 /* Debug */,
-				0944C8CFBED43A9615D026282B25657C /* Release */,
+				B89CA82FAD2FEC8FE91E2DE926C6505F /* Debug */,
+				95929A80584270076B06A866D72EEA9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
