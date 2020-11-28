@@ -31,11 +31,6 @@ kotlin {
         homepage = "https://github.com/outadoc/kemu-chip8"
 
         ios.deploymentTarget = "14.0"
-
-        pod("lib_kemu") {
-            version = "1.0"
-            source = path(project.file("../lib-kemu"))
-        }
     }
 
     sourceSets {

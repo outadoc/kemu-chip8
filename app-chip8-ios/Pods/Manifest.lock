@@ -1,22 +1,16 @@
 PODS:
-  - lib_chip8 (1.0):
-    - lib_kemu (= 1.0)
-  - lib_kemu (1.0)
+  - lib_chip8 (1.0)
 
 DEPENDENCIES:
   - lib_chip8 (from `../lib-chip8`)
-  - lib_kemu (from `../lib-kemu`)
 
 EXTERNAL SOURCES:
   lib_chip8:
     :path: "../lib-chip8"
-  lib_kemu:
-    :path: "../lib-kemu"
 
 SPEC CHECKSUMS:
-  lib_chip8: a758061cef58e382d34ad771e8b0d91ce6c9180d
-  lib_kemu: dbdbe5769aa9d0be576865839b18a3638cbb65b3
+  lib_chip8: 6b6684460b937d8fdfd4861d887116fb699ce5f9
 
-PODFILE CHECKSUM: 43c198fb4a3da53e97f7e0a431b793a942911fa5
+PODFILE CHECKSUM: b6a2cf4bbb6d1ada388a8308d2ec8128873a9d0e
 
 COCOAPODS: 1.10.0
