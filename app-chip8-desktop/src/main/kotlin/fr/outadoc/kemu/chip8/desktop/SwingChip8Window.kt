@@ -8,7 +8,6 @@ import fr.outadoc.kemu.chip8.display.Chip8DisplayDriver
 import fr.outadoc.kemu.theme.Theme
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
-import java.awt.Toolkit
 import java.awt.event.KeyEvent
 import java.io.File
 import javax.swing.*
@@ -39,88 +38,57 @@ class SwingChip8Window {
         pack()
     }
 
-    private val menuBar =
-        JMenuBar().apply {
-            add(
-                JMenu("File").apply {
-                    add(
-                        JMenuItem("Open").apply {
-                            accelerator = KeyStroke.getKeyStroke(
-                                KeyEvent.VK_O,
-                                Toolkit.getDefaultToolkit().menuShortcutKeyMask
-                            )
-
-                            addActionListener {
-                                when (fileChooser.showDialog(window, "Run")) {
-                                    JFileChooser.APPROVE_OPTION -> {
-                                        execute(fileChooser.selectedFile)
-                                    }
-                                }
-                            }
+    private val menuBar = menuBar {
+        menu("File") {
+            item("Open", shortcut = KeyEvent.VK_O) {
+                onClick = {
+                    when (fileChooser.showDialog(window, "Run")) {
+                        JFileChooser.APPROVE_OPTION -> {
+                            execute(fileChooser.selectedFile)
                         }
-                    )
+                    }
                 }
-            )
-            add(
-                JMenu("Execution").apply {
-                    add(
-                        JMenuItem("Stop").apply {
-                            addActionListener {
-                                runner.stop()
-                            }
-                        }
-                    )
-                    add(
-                        JMenuItem("Reset").apply {
-                            accelerator = KeyStroke.getKeyStroke(
-                                KeyEvent.VK_R,
-                                Toolkit.getDefaultToolkit().menuShortcutKeyMask
-                            )
-
-                            addActionListener {
-                                runner.reset()
-                            }
-                        }
-                    )
-                    add(
-                        JMenu("Speed").apply {
-                            val group = ButtonGroup()
-                            Speed.values().forEach { speed ->
-                                add(
-                                    JRadioButtonMenuItem(speed.label).apply {
-                                        group.add(this)
-                                        isSelected = runner.speed == speed
-                                        addActionListener {
-                                            runner.speed = speed
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                    )
-                }
-            )
-            add(
-                JMenu("Display").apply {
-                    add(
-                        JMenu("Theme").apply {
-                            val group = ButtonGroup()
-                            Theme.values().forEach { theme ->
-                                add(
-                                    JRadioButtonMenuItem(theme.label).apply {
-                                        group.add(this)
-                                        isSelected = (displayDriver.theme == theme)
-                                        addActionListener {
-                                            displayDriver.theme = theme
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                    )
-                }
-            )
+            }
         }
+
+        menu("Execution") {
+            item("Stop") {
+                onClick = {
+                    runner.stop()
+                }
+            }
+
+            item("Reset", shortcut = KeyEvent.VK_R) {
+                onClick = {
+                    runner.reset()
+                }
+            }
+
+            group("Speed") {
+                Speed.values().forEach { speed ->
+                    option(speed.label) {
+                        isSelected = runner.speed == speed
+                        onClick = {
+                            runner.speed = speed
+                        }
+                    }
+                }
+            }
+        }
+
+        menu("View") {
+            group("Theme") {
+                Theme.values().forEach { theme ->
+                    option(theme.label) {
+                        isSelected = (displayDriver.theme == theme)
+                        onClick = {
+                            displayDriver.theme = theme
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     fun show() {
         KeyboardFocusManager

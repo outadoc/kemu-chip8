@@ -5,7 +5,6 @@ import fr.outadoc.kemu.chip8.display.createCanvasContext
 import fr.outadoc.kemu.chip8.display.Chip8DisplayDriver
 import fr.outadoc.kemu.chip8.display.Chip8Keypad
 import kotlinx.browser.window
-import org.w3c.dom.*
 
 private lateinit var displayDriver: Chip8DisplayDriver
 private lateinit var keypad: Chip8Keypad
