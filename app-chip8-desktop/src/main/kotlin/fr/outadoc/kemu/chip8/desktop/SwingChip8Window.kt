@@ -4,7 +4,7 @@ import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.toUByteArray2
 import fr.outadoc.kemu.chip8.Chip8Runner
 import fr.outadoc.kemu.chip8.display.Chip8Keypad
-import fr.outadoc.kemu.chip8.display.Chip8DisplayDriver
+import fr.outadoc.kemu.display.MainThreadFrameDispatcher
 import fr.outadoc.kemu.theme.Theme
 import java.awt.BorderLayout
 import java.awt.KeyboardFocusManager
@@ -20,9 +20,10 @@ class SwingChip8Window {
     }
 
     private val keypad = Chip8Keypad()
-    private val displayDriver = Chip8DisplayDriver()
+    private val displayView = Chip8DisplayView()
 
-    private val runner = Chip8Runner(keypad, displayDriver)
+    private val frameDispatcher = MainThreadFrameDispatcher(displayView)
+    private val runner = Chip8Runner(keypad, frameDispatcher)
 
     private val fileChooser = JFileChooser().apply {
         fileFilter = FileNameExtensionFilter("CHIP-8 Program", "ch8")
@@ -33,7 +34,7 @@ class SwingChip8Window {
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         isResizable = false
         contentPane.apply {
-            add(displayDriver, BorderLayout.CENTER)
+            add(displayView, BorderLayout.CENTER)
         }
         pack()
     }
@@ -80,9 +81,9 @@ class SwingChip8Window {
             group("Theme") {
                 Theme.values().forEach { theme ->
                     option(theme.label) {
-                        isSelected = (displayDriver.theme == theme)
+                        isSelected = (displayView.theme == theme)
                         onClick = {
-                            displayDriver.theme = theme
+                            displayView.theme = theme
                         }
                     }
                 }

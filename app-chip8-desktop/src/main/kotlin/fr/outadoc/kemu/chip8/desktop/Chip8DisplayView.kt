@@ -1,28 +1,21 @@
-package fr.outadoc.kemu.chip8.display
+package fr.outadoc.kemu.chip8.desktop
 
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.b
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_HEIGHT
 import fr.outadoc.kemu.chip8.Chip8Constants.DISPLAY_WIDTH
-import fr.outadoc.kemu.display.DisplayDriver
+import fr.outadoc.kemu.display.FrameConsumer
 import fr.outadoc.kemu.theme.Theme
 import fr.outadoc.kemu.theme.toColor
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import java.awt.Dimension
 import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JComponent
 
-actual class Chip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
+class Chip8DisplayView : FrameConsumer, JComponent() {
 
     private val scaleFactor = 10
-
     private var currentFrame: UByteArray2? = null
-    private var job: Job? = null
 
     var theme: Theme = Theme.WHITE_ON_BLACK
         set(value) {
@@ -42,20 +35,8 @@ actual class Chip8DisplayDriver : JComponent(), DisplayDriver<Chip8Display> {
         )
     }
 
-    override fun attach(display: Chip8Display) {
-        job?.cancel()
-        job = GlobalScope.launch(Dispatchers.Main) {
-            display.frameBufferFlow.collect { fb ->
-                currentFrame = fb.copyOf()
-                repaint()
-            }
-        }
-    }
-
-    override fun detach() {
-        job?.cancel()
-        job = null
-        currentFrame = null
+    override fun displayFrame(frame: UByteArray2?) {
+        currentFrame = frame
         repaint()
     }
 

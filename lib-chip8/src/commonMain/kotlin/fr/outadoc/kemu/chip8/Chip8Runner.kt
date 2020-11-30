@@ -3,14 +3,13 @@ package fr.outadoc.kemu.chip8
 import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.UByteArray2
 import fr.outadoc.kemu.chip8.display.Chip8Display
-import fr.outadoc.kemu.display.DisplayDriver
+import fr.outadoc.kemu.display.FrameDispatcher
 import fr.outadoc.kemu.display.Keypad
 import kotlinx.coroutines.*
-import kotlin.coroutines.coroutineContext
 
 class Chip8Runner(
     private val keypad: Keypad,
-    private val displayDriver: DisplayDriver<Chip8Display>
+    private val frameDispatcher: FrameDispatcher
 ) {
     /**
      * Delay between each CPU tick, in milliseconds.
@@ -30,7 +29,7 @@ class Chip8Runner(
 
     private suspend fun runProgram(program: UByteArray2) = coroutineScope {
         Chip8CPU(keypad).apply {
-            displayDriver.attach(display)
+            frameDispatcher.attach(display)
             loadProgram(program)
 
             launch {
@@ -51,7 +50,7 @@ class Chip8Runner(
     }
 
     fun stop() {
-        displayDriver.detach()
+        frameDispatcher.detach()
         programJob?.cancel()
         programJob = null
     }

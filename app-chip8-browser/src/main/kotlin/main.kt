@@ -2,11 +2,11 @@ import fr.outadoc.kemu.Speed
 import kotlinx.browser.document
 import fr.outadoc.kemu.chip8.Chip8Runner
 import fr.outadoc.kemu.chip8.display.createCanvasContext
-import fr.outadoc.kemu.chip8.display.Chip8DisplayDriver
 import fr.outadoc.kemu.chip8.display.Chip8Keypad
+import fr.outadoc.kemu.display.MainThreadFrameDispatcher
 import kotlinx.browser.window
 
-private lateinit var displayDriver: Chip8DisplayDriver
+private lateinit var displayView: Chip8DisplayView
 private lateinit var keypad: Chip8Keypad
 private lateinit var runner: Chip8Runner
 
@@ -16,10 +16,11 @@ fun main() {
             canvas.id = "display"
         }
 
-        displayDriver = Chip8DisplayDriver(context)
+        displayView = Chip8DisplayView(context)
         keypad = Chip8Keypad()
 
-        runner = Chip8Runner(keypad, displayDriver).apply {
+        val frameDispatcher = MainThreadFrameDispatcher(displayView)
+        runner = Chip8Runner(keypad, frameDispatcher).apply {
             speed = Speed.SUPER_SLOW
         }
 
@@ -28,9 +29,9 @@ fun main() {
         document.getElementById("settings-container")?.appendChild(
             form(
                 initialSpeed = runner.speed,
-                initialTheme = displayDriver.theme,
+                initialTheme = displayView.theme,
                 onThemeSelected = { theme ->
-                    displayDriver.theme = theme
+                    displayView.theme = theme
                 },
                 onSpeedSelected = { speed ->
                     runner.speed = speed
