@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -69,6 +72,13 @@ kotlin {
 
         all {
             languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
+        }
+    }
+
+    // Required to fix duplicate symbol issue on iOS w/ 2 dependent modules
+    targets.withType<KotlinNativeTarget> {
+        binaries.withType<Framework> {
+            isStatic = false
         }
     }
 }
