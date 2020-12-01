@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,7 +29,6 @@
 		6C79145B2576DB750082EEAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C79145D2576DB750082EEAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C7914642576DB8A0082EEAC /* Chip8DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip8DisplayView.swift; sourceTree = "<group>"; };
-		6C7914682576DB920082EEAC /* Main2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		F1DE8574C6BEE099BC122C6D /* Pods-CHIP-8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHIP-8.release.xcconfig"; path = "Target Support Files/Pods-CHIP-8/Pods-CHIP-8.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +78,6 @@
 				6C7914512576DB720082EEAC /* SceneDelegate.swift */,
 				6C7914532576DB720082EEAC /* ViewController.swift */,
 				6C7914552576DB720082EEAC /* Main.storyboard */,
-				6C7914682576DB920082EEAC /* Main2.storyboard */,
 				6C7914582576DB750082EEAC /* Assets.xcassets */,
 				6C79145A2576DB750082EEAC /* LaunchScreen.storyboard */,
 				6C79145D2576DB750082EEAC /* Info.plist */,
@@ -93,7 +91,6 @@
 				6A7FC43C7E1A2841BEC7E039 /* Pods-CHIP-8.debug.xcconfig */,
 				F1DE8574C6BEE099BC122C6D /* Pods-CHIP-8.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
