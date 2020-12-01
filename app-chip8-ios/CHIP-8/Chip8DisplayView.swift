@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import lib_kemu
 import lib_chip8
 
 class Chip8DisplayView : UIView, FrameConsumer {

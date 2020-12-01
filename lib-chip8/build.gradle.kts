@@ -41,7 +41,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":lib-kemu"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
             }
         }
@@ -72,13 +71,6 @@ kotlin {
 
         all {
             languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
-        }
-    }
-
-    // Required to fix duplicate symbol issue on iOS w/ 2 dependent modules
-    targets.withType<KotlinNativeTarget> {
-        binaries.withType<Framework> {
-            isStatic = false
         }
     }
 }

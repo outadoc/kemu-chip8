@@ -2,7 +2,6 @@ package fr.outadoc.kemu.chip8
 
 import fr.outadoc.kemu.Speed
 import fr.outadoc.kemu.array.UByteArray2
-import fr.outadoc.kemu.chip8.display.Chip8Display
 import fr.outadoc.kemu.display.FrameDispatcher
 import fr.outadoc.kemu.display.Keypad
 import kotlinx.coroutines.*
