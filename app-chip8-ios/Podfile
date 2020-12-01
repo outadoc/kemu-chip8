@@ -1,6 +1,6 @@
 platform :ios, '14.0'
 
-target 'app-chip8-ios (iOS)' do
+target 'CHIP-8 (iOS)' do
   use_frameworks!
   pod 'lib_chip8', :path => '../lib-chip8'
   pod 'lib_kemu', :path => '../lib-kemu'

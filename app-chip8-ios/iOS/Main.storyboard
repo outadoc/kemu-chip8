@@ -11,12 +11,12 @@
         <!--CHIP-8-->
         <scene sceneID="4vt-yj-sDC">
             <objects>
-                <viewController title="CHIP-8" id="vdN-BZ-uvC" customClass="ViewController" customModule="app_chip8_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CHIP-8" id="vdN-BZ-uvC" customClass="ViewController" customModule="CHIP_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4tB-wh-2rt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKC-zc-wN2" customClass="Chip8DisplayView" customModule="app_chip8_ios" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKC-zc-wN2" customClass="Chip8DisplayView" customModule="CHIP_8" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="103.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>

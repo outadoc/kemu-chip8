@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  app-chip8-ios (iOS)
+//  CHIP-8 (iOS)
 //
 //  Created by Baptiste on 01/12/2020.
 //
