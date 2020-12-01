@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  CHIP-8 (iOS)
+//  CHIP-8
 //
 //  Created by Baptiste on 01/12/2020.
 //
@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -48,3 +49,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
