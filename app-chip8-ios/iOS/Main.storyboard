@@ -11,7 +11,7 @@
         <!--CHIP-8-->
         <scene sceneID="4vt-yj-sDC">
             <objects>
-                <viewController title="CHIP-8" id="vdN-BZ-uvC" sceneMemberID="viewController">
+                <viewController title="CHIP-8" id="vdN-BZ-uvC" customClass="ViewController" customModule="app_chip8_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4tB-wh-2rt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
