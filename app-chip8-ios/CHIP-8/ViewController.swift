@@ -12,10 +12,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var displayView: Chip8DisplayView!
 
-    let keypad = Chip8Keypad()
+    private let keypad = Chip8Keypad()
 
-    let frameDispatcher = MainThreadFrameDispatcher(frameConsumer: nil)
-    let runner: Chip8Runner
+    private let frameDispatcher = MainThreadFrameDispatcher(frameConsumer: nil)
+    private let runner: Chip8Runner
 
     required init?(coder: NSCoder) {
         runner = Chip8Runner(keypad: keypad, frameDispatcher: frameDispatcher)
@@ -25,22 +25,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
         frameDispatcher.frameConsumer = displayView
     }
 
-    private func execute() {
-        let karray: KotlinByteArray = KotlinByteArray(size: Int32(program.count))
-        
+    private func execute(program: [UInt8]) {
+        let karray = UByteArray2(size: Int32(program.count))
         for (index, b) in program.enumerated() {
-            karray.set(index: Int32(index), value: Int8(b))
+            // Copy program into a UByteArray2
+            karray.set(index: Int32(index), value: b)
         }
 
-        let b = UByteArray2(storage: karray)
-        runner.execute(program: b)
+        runner.execute(program: karray)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        runner.stop()
     }
 
-    let program: [UInt8] = [
+    override func viewDidAppear(_ animated: Bool) {
+        execute(program: debugProgram)
+    }
+
+    private let debugProgram: [UInt8] = [
         0x12, 0x4E, 0xEA, 0xAC, 0xAA, 0xEA, 0xCE, 0xAA, 0xAA, 0xAE, 0xE0,
         0xA0, 0xA0, 0xE0, 0xC0, 0x40, 0x40, 0xE0, 0xE0, 0x20, 0xC0, 0xE0,
         0xE0, 0x60, 0x20, 0xE0, 0xA0, 0xE0, 0x20, 0x20, 0x60, 0x40, 0x20,
