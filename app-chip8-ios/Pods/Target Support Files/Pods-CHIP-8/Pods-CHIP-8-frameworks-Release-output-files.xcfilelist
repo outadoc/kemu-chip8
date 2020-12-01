@@ -1,0 +1,2 @@
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/lib_chip8.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/lib_kemu.framework

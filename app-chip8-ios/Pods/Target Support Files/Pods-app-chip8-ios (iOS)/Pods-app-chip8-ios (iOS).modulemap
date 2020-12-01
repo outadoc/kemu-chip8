@@ -1,6 +1,0 @@
-framework module Pods_app_chip8_ios__iOS_ {
-  umbrella header "Pods-app-chip8-ios (iOS)-umbrella.h"
-
-  export *
-  module * { export * }
-}

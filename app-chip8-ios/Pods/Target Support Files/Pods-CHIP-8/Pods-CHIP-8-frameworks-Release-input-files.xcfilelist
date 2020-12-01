@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-CHIP-8/Pods-CHIP-8-frameworks.sh
+${PODS_ROOT}/../../lib-chip8/build/cocoapods/framework/lib_chip8.framework
+${PODS_ROOT}/../../lib-kemu/build/cocoapods/framework/lib_kemu.framework

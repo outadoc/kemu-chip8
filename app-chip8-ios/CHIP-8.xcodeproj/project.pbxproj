@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6C7914502576DB720082EEAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79144F2576DB720082EEAC /* AppDelegate.swift */; };
+		6C7914522576DB720082EEAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7914512576DB720082EEAC /* SceneDelegate.swift */; };
+		6C7914542576DB720082EEAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7914532576DB720082EEAC /* ViewController.swift */; };
+		6C7914572576DB720082EEAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C7914552576DB720082EEAC /* Main.storyboard */; };
+		6C7914592576DB750082EEAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C7914582576DB750082EEAC /* Assets.xcassets */; };
+		6C79145C2576DB750082EEAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C79145A2576DB750082EEAC /* LaunchScreen.storyboard */; };
+		6C7914652576DB8A0082EEAC /* Chip8DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7914642576DB8A0082EEAC /* Chip8DisplayView.swift */; };
+		732C671A7CB6D9D99F370EC1 /* Pods_CHIP_8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545877BF367EAEA9769DC001 /* Pods_CHIP_8.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		545877BF367EAEA9769DC001 /* Pods_CHIP_8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CHIP_8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A7FC43C7E1A2841BEC7E039 /* Pods-CHIP-8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHIP-8.debug.xcconfig"; path = "Target Support Files/Pods-CHIP-8/Pods-CHIP-8.debug.xcconfig"; sourceTree = "<group>"; };
+		6C79144C2576DB720082EEAC /* CHIP-8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP-8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C79144F2576DB720082EEAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6C7914512576DB720082EEAC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6C7914532576DB720082EEAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6C7914562576DB720082EEAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6C7914582576DB750082EEAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6C79145B2576DB750082EEAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6C79145D2576DB750082EEAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C7914642576DB8A0082EEAC /* Chip8DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip8DisplayView.swift; sourceTree = "<group>"; };
+		F1DE8574C6BEE099BC122C6D /* Pods-CHIP-8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHIP-8.release.xcconfig"; path = "Target Support Files/Pods-CHIP-8/Pods-CHIP-8.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6C7914492576DB720082EEAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				732C671A7CB6D9D99F370EC1 /* Pods_CHIP_8.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63BCA7462CC46DFF44A9453A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				545877BF367EAEA9769DC001 /* Pods_CHIP_8.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C7914432576DB720082EEAC = {
+			isa = PBXGroup;
+			children = (
+				6C79144E2576DB720082EEAC /* CHIP-8 */,
+				6C79144D2576DB720082EEAC /* Products */,
+				A0FC30DEF0CD1984AC68FC15 /* Pods */,
+				63BCA7462CC46DFF44A9453A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6C79144D2576DB720082EEAC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C79144C2576DB720082EEAC /* CHIP-8.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6C79144E2576DB720082EEAC /* CHIP-8 */ = {
+			isa = PBXGroup;
+			children = (
+				6C7914642576DB8A0082EEAC /* Chip8DisplayView.swift */,
+				6C79144F2576DB720082EEAC /* AppDelegate.swift */,
+				6C7914512576DB720082EEAC /* SceneDelegate.swift */,
+				6C7914532576DB720082EEAC /* ViewController.swift */,
+				6C7914552576DB720082EEAC /* Main.storyboard */,
+				6C7914582576DB750082EEAC /* Assets.xcassets */,
+				6C79145A2576DB750082EEAC /* LaunchScreen.storyboard */,
+				6C79145D2576DB750082EEAC /* Info.plist */,
+			);
+			path = "CHIP-8";
+			sourceTree = "<group>";
+		};
+		A0FC30DEF0CD1984AC68FC15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A7FC43C7E1A2841BEC7E039 /* Pods-CHIP-8.debug.xcconfig */,
+				F1DE8574C6BEE099BC122C6D /* Pods-CHIP-8.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6C79144B2576DB720082EEAC /* CHIP-8 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C7914602576DB750082EEAC /* Build configuration list for PBXNativeTarget "CHIP-8" */;
+			buildPhases = (
+				AD8FD33FA01DC2C6FF52121F /* [CP] Check Pods Manifest.lock */,
+				6C7914482576DB720082EEAC /* Sources */,
+				6C7914492576DB720082EEAC /* Frameworks */,
+				6C79144A2576DB720082EEAC /* Resources */,
+				53404DA5C97A1C3A8C58346C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CHIP-8";
+			productName = "CHIP-8";
+			productReference = 6C79144C2576DB720082EEAC /* CHIP-8.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6C7914442576DB720082EEAC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					6C79144B2576DB720082EEAC = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 6C7914472576DB720082EEAC /* Build configuration list for PBXProject "CHIP-8" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6C7914432576DB720082EEAC;
+			productRefGroup = 6C79144D2576DB720082EEAC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6C79144B2576DB720082EEAC /* CHIP-8 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6C79144A2576DB720082EEAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C79145C2576DB750082EEAC /* LaunchScreen.storyboard in Resources */,
+				6C7914592576DB750082EEAC /* Assets.xcassets in Resources */,
+				6C7914572576DB720082EEAC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		53404DA5C97A1C3A8C58346C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CHIP-8/Pods-CHIP-8-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CHIP-8/Pods-CHIP-8-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CHIP-8/Pods-CHIP-8-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD8FD33FA01DC2C6FF52121F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CHIP-8-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C7914482576DB720082EEAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C7914542576DB720082EEAC /* ViewController.swift in Sources */,
+				6C7914502576DB720082EEAC /* AppDelegate.swift in Sources */,
+				6C7914652576DB8A0082EEAC /* Chip8DisplayView.swift in Sources */,
+				6C7914522576DB720082EEAC /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6C7914552576DB720082EEAC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C7914562576DB720082EEAC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6C79145A2576DB750082EEAC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C79145B2576DB750082EEAC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6C79145E2576DB750082EEAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6C79145F2576DB750082EEAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6C7914612576DB750082EEAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A7FC43C7E1A2841BEC7E039 /* Pods-CHIP-8.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C38RDC5QNT;
+				INFOPLIST_FILE = "CHIP-8/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.outadoc.kemu.chip8.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6C7914622576DB750082EEAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1DE8574C6BEE099BC122C6D /* Pods-CHIP-8.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C38RDC5QNT;
+				INFOPLIST_FILE = "CHIP-8/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.outadoc.kemu.chip8.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C7914472576DB720082EEAC /* Build configuration list for PBXProject "CHIP-8" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C79145E2576DB750082EEAC /* Debug */,
+				6C79145F2576DB750082EEAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C7914602576DB750082EEAC /* Build configuration list for PBXNativeTarget "CHIP-8" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C7914612576DB750082EEAC /* Debug */,
+				6C7914622576DB750082EEAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6C7914442576DB720082EEAC /* Project object */;
+}

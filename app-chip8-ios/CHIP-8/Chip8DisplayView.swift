@@ -1,6 +1,6 @@
 //
 //  Chip8DisplayView.swift
-//  app-chip8-ios (iOS)
+//  CHIP-8 (iOS)
 //
 //  Created by Baptiste on 30/11/2020.
 //
