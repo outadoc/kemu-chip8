@@ -53,13 +53,13 @@ class UByteArray2 constructor(private val storage: ByteArray) : Collection<UByte
         return (elements as Collection<*>).all { it is UByte && storage.contains(it.toByte()) }
     }
 
-    override fun isEmpty(): Boolean = this.storage.size == 0
+    override fun isEmpty(): Boolean = this.storage.isEmpty()
 
     override fun toString(): String {
         return joinToString()
     }
 
-    fun copyOf(): UByteArray2 = UByteArray2(storage)
+    fun copyOf(): UByteArray2 = UByteArray2(storage.copyOf())
 
     infix fun contentEquals(other: UByteArray2?): Boolean {
         return storage.contentEquals(other?.storage)
